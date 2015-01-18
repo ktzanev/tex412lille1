@@ -1,0 +1,16 @@
+.importan {
+  color:yellow;
+  font-weight: bold;
+}
+.fragment.current-fragment.current-yellow {
+  color:yellow;
+}
+.reveal pre {
+  font-size: 1em;
+  color:greenyellow;
+}
+li.helloworld {
+  display: inline-block;
+  vertical-align: top;
+  margin: 1em;
+}

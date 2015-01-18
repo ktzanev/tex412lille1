@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="fr">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Cours 1 (TeX412)</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="./css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/night.css" id="theme">
+    <link rel="stylesheet" href="main.css" id="theme">
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <div class="slides">
+
+        <section>
+          <h3>Les fichiers texte</h3>
+          <ul>
+            <li class="fragment">C'est quoi un fichier (file [en]) texte ?</li>
+            <li class="fragment">C'est quoi un encodage (encoding [en]) ?
+              <ul>
+                <li class="fragment current-yellow">ASCII/ANSI (7/8 bits)</li>
+                <li class="fragment current-yellow">Latin-1 = ISO 8859-1 (Western) ~ Windows-1252</li>
+                <li class="fragment current-yellow">Unicode => UTF8 (avec BOM), UTF16, ...</li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Programmation</h3>
+          <ul>
+            <li class="fragment">Au commencement était le fichier texte (pas vraiment)</li>
+            <li class="fragment">"Parse [en]" = "Analyse grammaticale"</li>
+            <li class="fragment">Compilation ou interprétation ...</li>
+            <li class="fragment">Le résultat + les messages d'erreurs</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Langages à balises</h3>
+          <ul>
+            <li class="fragment"><h4>HTML</h4><pre>&lt;b&gt;en gras&lt;/b&gt;</pre></li>
+            <li class="fragment"><h4>LaTeX</h4><pre>\textbf{en gras}</pre></li>
+            <li class="fragment"><h4>Markdown</h4><pre>**en gras**</pre></li>
+            <li class="fragment"><h4>MediaWiki</h4><pre>'''en gras'''</pre></li>
+            <li class="fragment"><h4>...</h4>des dizaines autres existent</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>(La)TeX et HTML</h3>
+          <ul>
+            <li class="fragment">Similitudes
+              <ul>
+                <li class="fragment roll-in">Détermine la mise en page globale et locale du document</li>
+                <li class="fragment roll-in">Essaye de séparer le contenu des instructions d'affichage (.css/.sty)</li>
+                <li class="fragment roll-in">Les deux excellent dans leur domaine de prédilection
+                 <ul>
+                  <li>(La)TeX : affichage sur papier</li>
+                  <li>HTML : affichage sur écrans</li>
+                 </ul>
+                </li>
+                <li class="fragment roll-in">Pas facile d'apprentissage</li>
+                <li class="fragment roll-in">Très bien documentés</li>
+              </ul>
+            </li>
+            <li class="fragment">Différences</li>
+              <ul>
+                <li class="fragment roll-in">compiler vs interpréter</li>
+                <li class="fragment roll-in">popularité</li>
+                <li class="fragment roll-in">difficulté de la programmation associée (javascript vs tex)</li>
+              </ul>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Hello World!</h3>
+          <ul>
+            <li target="_blank" class="helloworld fragment roll-in"><a href="http://dabblet.com/gist/6ac41cfbe336cb511be2">HTML</a>
+              <pre>
+<code class="html">
+  &lt;html&gt;
+    &lt;head&gt;&lt;/head&gt;
+    &lt;body&gt;
+      Hello World!
+    &lt;/body&gt;
+  &lt;/html&gt;
+</code>
+              </pre>
+            </li>
+            <li class="helloworld fragment roll-in">
+              <a target="_blank" href="https://fr.sharelatex.com/project/54bb8a74ef302e673191ee38">
+                LaTeX
+              </a>
+              <pre>
+<code class="latex">
+  \documentclass{article}
+
+  \begin{document}
+    Hello world!
+  \end{document}
+</code>
+              </pre>
+            </li>
+          </ul>
+        </section>
+
+
+        <section>
+          <h3>(La)TeX : comment ça fonctionne</h3>
+          <ul>
+            <li class="fragment roll-in">
+              Si le document (principal) est un fichier texte appeler <i class="importan">monfichier.tex</i>, on compile d'une des façons suivantes:<br>
+              <i>(en fonction du compilateur choisie)</i><br>
+              <ul class="fragment fade-in">
+                <li><pre>> xelatex monfichier.tex</pre></li>
+                <li><pre>> lualatex monfichier.tex</pre></li>
+                <li><pre>> pdflatex monfichier.tex</pre></li>
+              </ul>
+              <div class="fragment fade-in">
+                et le résultat est un fichier <i class="importan">monfichier.pdf</i> si tout se déroule bien.<br>
+                Sinon les message d'erreur en plus d'être affichés à l'écran se trouve dans le fichier <i class="importan">monfichier.log</i>.
+              </div>
+            </li>
+            <li class="fragment roll-in">Démonstration ...</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>(La)TeX : comment l'installer sur son ordinateur</h3>
+          <ul>
+            <li class="fragment roll-in">
+              Une <span class="importan">distribution</span> (La)TeX est un ensemble de programmes permettant de produire à partir des textes sources des documents finaux, le plus souvent des PDF. En général une distribution est entre 100 Mo et 200 Mo.
+            </li>
+            <li class="fragment roll-in">
+              Il existe des <span class="importan">distributions</span> différentes en fonctions du système d'opération. Les principales sont:<br><br>
+              <ul class="fragment fade-in">
+                <li>Linux: <a href="http://fr.wikipedia.org/wiki/TeX_Live" target="_blank">TeXLive</a></li>
+                <li>Mac OS X: <a href="http://fr.wikipedia.org/wiki/MacTeX" target="_blank">MacTeX</a></li>
+                <li>Windows: <a href="http://fr.wikipedia.org/wiki/MikTeX" target="_blank">MikTeX</a></li>
+              </ul><br>
+            </li>
+            <li class="fragment roll-in">Mais de nos jours on peut s'en passer d'une telle installation ...</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>LaTeX - l'édition en ligne</h3>
+          <ul>
+            <li class="fragment left-in">Essentiellement trois choix possibles:
+              <ul>
+                <li class="fragment left-in"><a target="_blank" href="http://www.sharelatex.com">ShareLaTeX.com</a><br>
+                  &infin; projets privés, compilation correcte, très bonne documentation (en anglais),  1 seul collaborateur autorisé pour les projets privés, mais on peut éditer directement les projets publiques.
+                </li>
+                <li class="fragment left-in"><a target="_blank" href="http://www.overleaf.com/">Overleaf.com</a><br>
+                  Presque pas de limitations dans le plan gratuit, mais compilation un peu lente, documentation pauvre et choix du modèle difficile.</li>
+                <li class="fragment left-in"><a target="_blank" href="http://www.papeeria.com/">Papeeria.com</a><br>
+                  1 projet privé + &infin; collaborateurs, compilation correcte, pas de documentation latex, presque pas de modèles</li>
+              </ul><br>
+            </li>
+            <li class="fragment">Et GitHub dans tous ça ?
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Autre site utiles pour le LaTeX</h3>
+          <ul>
+            <li class="fragment"><a target="_blank" href="http://detexify.kirelabs.org">Detexify</a></li>
+            <li class="fragment"><a target="_blank" href="http://formulasheet.com/#r|ed">formulasheet.com</a></li>
+            <li class="fragment"><a target="_blank" href="http://mathurl.com">mathurl</a></li>
+            <li class="fragment"><a target="_blank" href="http://www.codecogs.com/latex/eqneditor.php?lang=fr-fr">codecogs</a></li>
+            <li class="fragment"><a target="_blank" href="http://www.tablesgenerator.com/">Tables Generator</a></li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>LaTeX : Manuels</h3>
+          <ul>
+            <li class="fragment"><a target="_blank" href="http://fr.wikibooks.org/wiki/LaTeX">WikiBooks</a></li>
+            <li class="fragment"><a target="_blank" href="https://fr.sharelatex.com/learn">ShareLaTeX</a></li>
+            <li class="fragment"><a target="_blank" href="http://openclassrooms.com/courses/redigez-des-documents-de-qualite-avec-latex?status=published">Open Classrooms</a></li>
+            <li class="fragment"><a target="_blank" href="https://www.google.fr/search?q=latex+table+des+mati%C3%A8res">Google "latex table des matières"</a></li>
+            <li class="fragment"><a target="_blank" href="https://www.youtube.com/playlist?list=PLF5D1F10DAA072E4E">YouTube</a></li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>TeX & Co. l'histoire version courte</h3>
+          <ul>
+            <li class="fragment">1977: Création par <a href="http://fr.wikipedia.org/wiki/Donald_Knuth">Donald Knuth</a> de TeX (7 bits) et PlainTeX</li>
+            <li class="fragment">1983: AMS-TeX & <span class="importan">LeTeX</span> (créé par Leslie Lamport)</li>
+            <li class="fragment">1990: TeX 3.0 (8 bits)</li>
+            <li class="fragment">1992: eTeX</li>
+            <li class="fragment">1999: pdfTeX</li>
+            <li class="fragment">2004: <span class="importan">XeLaTeX</span>, pdfLaTeX</li>
+            <li class="fragment">2010: LuaLaTeX</li>
+            <li class="fragment">2014: TeX est en version 3.14159265</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Conseils pratique: vos adresses mail et mots de passes</h3>
+          <ul>
+            <li class="fragment">Il faut avoir au moins deux adresse perso
+              <ul>
+                <li class="fragment roll-in">Pour communiquer avec les humains (y compris l'administration)</li>
+                <li class="fragment roll-in">Pour donner à des sites lors de la création des inscriptions</li>
+                <li class="fragment roll-in">Il est préférable d'avoir un troisième "argent"</li>
+              </ul>
+            </li>
+            <li class="fragment">Il faut avoir au moins deux adresse pro
+              <ul>
+                <li class="fragment roll-in">Un fournit par l'employeur (l'université)</li>
+                <li class="fragment roll-in">L'un constant au long de votre vie (à mettre sur CV)</li>
+              </ul>
+            </li>
+            <li class="fragment">Comment retenir autant de mot de passes</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>HTML: édition en ligne</h3>
+            <ul>
+              <li class="fragment"><h3>HTML</h3>
+                Plusieurs possibilités, mais une seule est gratuite avec possibilité d'avoir plusieurs projets à ma connaissance.
+                <ul>
+                  <li><a target="_blank" href="http://plnkr.co/">Plnkr.co</a> (avec projets, compte GitHub)</li>
+                  <li><a target="_blank" href="http://codepen.io">codepen.io</a></li>
+                  <li><a target="_blank" href="http://jsfiddle.net/">jsfiddle.net</a></li>
+                  <li><a target="_blank" href="http://dabblet.com/">dabblet.com</a></li>
+                  <li><a target="_blank" href="http://cssdeck.com/">cssdeck.com</a></li>
+                </ul>
+              </li>
+            </ul>
+        </section>
+
+      </div><!-- End slides -->
+
+    </div><!-- End reveal -->
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      Reveal.initialize({
+        history: true,
+        transition: 'linear',
+
+        math: {
+          // mathjax: 'http://cdn.mathjax.org/mathjax/latest/MathJax.js',
+          config: 'TeX-AMS_HTML-full'
+        },
+
+        dependencies: [
+          { src: 'lib/js/classList.js' },
+          { src: 'plugin/math/math.js', async: true }
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>
