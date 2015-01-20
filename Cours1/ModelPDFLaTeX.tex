@@ -1,0 +1,32 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper]{geometry}
+\usepackage{mathtools,amssymb,bm,amsthm} % mathtools => amsmath
+% --------------- PDFLaTeX spécifique
+\usepackage[utf8]{inputenc} % pour avoir ce fichier en utf8
+\usepackage[T1]{fontenc} % pour avoir les lettres accentués dans le resultat PDF
+\usepackage{lmodern} % pour utiliser cette police vectorielle
+\usepackage[francais]{babel} % pour franciser LaTeX
+% ---------------
+\usepackage{graphicx} % pour \includegraphics
+\usepackage[pdfencoding=auto]{hyperref} % pour les liens. En règle général il doit être le dernier package chargé.
+
+% ---------------
+\title{Mon titre}
+\author{Mon Nom \and Ton Nom}
+\date{\today}
+% ---------------
+
+\begin{document}
+%==============================================================
+  \maketitle
+
+  \begin{abstract}
+    Mon résumé à mettre ici \dots
+  \end{abstract}
+
+\section{Introduction}
+
+Bla bla \dots
+
+%==============================================================
+\end{document}
