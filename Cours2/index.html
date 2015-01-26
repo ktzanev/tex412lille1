@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="fr">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Cours 2 (TeX412)</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="./css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/night.css" id="theme">
+    <link rel="stylesheet" href="main.css" id="theme">
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <div class="slides">
+
+        <section data-background="#4d7e65" data-background-transition="zoom">
+          <h1>TeX412</h1>
+          <h2>(Xe)LaTeX & HTML</h2>
+          <h2>Cours 2</h2>
+          <div class="fragment roll-in">adresse web de cette présentation:
+            <h3>git.io/STho2Q</h3>
+          </div>
+          <div class="fragment roll-in">
+            et du cours:
+            <a href="http://ktzanev.github.io/tex412lille1/">ktzanev.github.io/tex412lille1</a>
+          </div>
+        </section>
+
+        <section>
+          <h3>Le préambule standard</h3>
+          Exemple dans le document <a href="https://github.com/ktzanev/tex412lille1/blob/gh-pages/Exemples/ModelXeLaTeX.tex">ModelXeLaTeX.tex</a>.
+          <ul>
+            <li class="fragment current-yellow"><code>\documentclass[11pt]{report} </code> type de document avec taille de police par défaut</li>
+            <li class="fragment current-yellow"><code>\usepackage[a4paper]{geometry} </code> pour la taille de la page, les marges, ...</li>
+            <li class="fragment current-yellow"><code>\usepackage{mathtools,amssymb,bm,amsthm} </code> pour élargir les possibilités en math</li>
+            <li class="fragment current-yellow"><code>\usepackage{fontspec} </code> pour le bon encodage des PDF (=> police lmodern)<br>
+            <code>&nbsp;&nbsp;\defaultfontfeatures{Ligatures=TeX} </code> pour avoir les ligatures standards</li>
+            <li class="fragment current-yellow"><code>\usepackage{polyglossia} </code> pour la gestion des langues sous XeLaTeX<br>
+            <code>&nbsp;&nbsp;\setmainlanguage{french} </code> si on écrit en français</li>
+            <li class="fragment current-yellow"><code>\usepackage{xcolor} </code> pour pouvoir utiliser des couleurs</li>
+            <li class="fragment current-yellow"><code>\usepackage{graphicx} </code> pour \includegraphics</li>
+            <li class="fragment current-yellow"><code>\usepackage[pdfencoding=auto]{hyperref} </code> pour les liens.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Les caractères spéciaux</h3>
+          <ul>
+            <li class="fragment current-yellow"><code>%</code> : commentaire (pour l'imprimer <code>\%</code>)</li>
+            <li class="fragment current-yellow"><code>$</code> : mode math (pour l'imprimer <code>\$</code>)</li>
+            <li class="fragment current-yellow"><code>&</code> : allignement (pour l'imprimer <code>\&</code>)</li>
+            <li class="fragment current-yellow"><code>_</code> : indice (pour l'imprimer <code>\_</code>)</li>
+            <li class="fragment current-yellow"><code>^</code> : puissance (pour l'imprimer <code>\^</code>)</li>
+            <li class="fragment current-yellow"><code>~</code> : espace insecable (pour l'imprimer <code>\~</code>)</li>
+            <li class="fragment current-yellow"><code>{ }</code> : début et fin de bloque (pour l'imprimer <code>\{</code> et <code>\}</code>)</li>
+            <li class="fragment current-yellow"><code>#</code> : argument de macro (pour l'imprimer <code>\#</code>)</li>
+            <li class="fragment current-yellow"><code>\</code> : spécial (pour l'imprimer <code>\textbackslash, $\backslash$, $\setminus$, \symbol{92}</code>)</li>
+          </ul>
+        </section>
+
+        <section>
+          <section>
+            <h3>Les éspaces</h3>
+          </section>
+          <section><h4>Les caractère d'espace</h4>
+            <ul>
+              <li class="fragment current-yellow">espace : au début de ligne, consecutif, en fin de ligne, forcé <code>\ </code>, en mode math <code>$x y$</code></li>
+              <li class="fragment current-yellow">espace insecable : <code>~</code></li>
+              <li class="fragment current-yellow">tabulation</li>
+              <li class="fragment current-yellow">passage à la ligne : un, deux, après %, <code>\newline</code>, <code>\\</code>, <code>\\*</code></li>
+            </ul>
+          </section>
+          <section><h4>Les espaces horizontaux</h4>
+            <ul>
+              <li class="fragment current-yellow"><code>\hspace{...}, \hspace*{...}</code> par exemple \hspace*{1cm}</li>
+              <li class="fragment current-yellow"><code>\enskip</code> = \hspace{.5em}</li>
+              <li class="fragment current-yellow"><code>\quad</code> = \hspace{1em}</li>
+              <li class="fragment current-yellow"><code>\qquad</code> = \hspace{2em}</li>
+              <li class="fragment current-yellow"><code>\,</code> espace fin = 3/18 em ~ 0.17 em</li>
+              <li class="fragment current-yellow"><code>\:</code> (mode math) espace fin = 4/18 em ~ 0.22 em</li>
+              <li class="fragment current-yellow"><code>\;</code> (mode math) espace fin = 5/18 em ~ 0.28 em</li>
+              <li class="fragment current-yellow"><code>\!</code> (mode math) espace fin negatif = -3/18 em ~ -0.17 em</li>
+              <li class="fragment current-yellow"><code>\hfill</code> identique à <code>\hspace{\fill}</code></li>
+              <li class="fragment current-yellow"><code>\hrulefill</code> pour _____ et <code>\dotfill</code> pour ..... </li>
+              <li class="fragment current-yellow"><code>\indent</code> et <code>\noindent</code></li>
+            </ul>
+          </section>
+          <section><h4>Les espaces verticaux</h4>
+            <ul>
+              <li class="fragment current-yellow"><code>\\[...]</code>, <code>\\*[...]</code> comme \\[1ex] ou \\*[\baselineskip]</li>
+              <li class="fragment current-yellow"><code>\vspace{...}</code> et <code>\vspace*{...}</code> </li>
+              <li class="fragment current-yellow"><code>\smallskip</code>, <code>\medskip</code> and <code>\bigskip</code></li>
+              <li class="fragment current-yellow"><code>\vfill</code> identique à <code>\vspace{\fill}</code></li>
+              <li class="fragment current-yellow"><code>\baselinestretch</code> espace entre les lignes \renewcommand{\baselinestretch}{1.5}</li>
+              <li class="fragment current-yellow"><code>\parskip</code> \setlength{\parskip}{1em}</li>
+            </ul>
+          </section>
+          <section><h4>Les changement de page</h4>
+            <ul>
+              <li class="fragment current-yellow"><code>\newpage</code></li>
+              <li class="fragment current-yellow"><code>\clearpage</code></li>
+              <li class="fragment current-yellow"><code>\cleardoublepage</code> il faut [twoside] dans \documentclass</li>
+            </ul>
+          </section>
+        </section>
+
+        <section>
+          <h3>Les alignement</h3>
+            <ul>
+              <li class="fragment current-yellow">Par défaut : justifié</li>
+              <li class="fragment current-yellow"> A droite
+                <pre class="block">
+                  <code>
+  \begin{flushright}
+    Texte aligné à droite
+  \end{flushright}
+                  </code>
+                </pre>
+              <li class="fragment current-yellow"> A gauche
+                <pre class="block">
+                  <code>
+  \begin{flushleft}
+    Texte aligné à gauche
+  \end{flushleft}
+                  </code>
+                </pre>
+              <li class="fragment current-yellow"> Centré
+                <pre class="block">
+                  <code>
+  \begin{center}
+    Texte au centre
+  \end{center}
+                  </code>
+                </pre>
+              </li>
+              <li class="fragment roll-in"><code>\usepackage{ragged2e}</code> : (voir les options) pour tout le document</li>
+            </ul>
+        </section>
+
+        <section>
+          <h3>Polices</h3>
+            <ul>
+              <li class="fragment current-yellow"><code>\textbf{gras}</code>, <code>\textmd{moyen (pas gras)}</code></li>
+              <li class="fragment current-yellow"><code>\textit{italique}</code>, <code>\textsl{penché}</code>, <code>\emph{ça dépend}</code>, <code>\textup{droit}</code></li>
+              <li class="fragment current-yellow"><code>\textsf{sans serif}</code>, <code>\texttt{machine à ecrire}</code>, <code>\textsc{PETITE CAPITALES}</code>, <code>\textrm{par défaut}</code></li>
+              <li class="fragment current-yellow"><code>\textnormal{tout normale}</code></li>
+              <li class="fragment current-yellow"><code>\underline{souligné}</code></li>
+              <li class="fragment current-yellow"><code>\textcolor{red}{en rouge}</code> (il faut la bibliothèque xcolor)</li>
+              <li class="fragment current-yellow"><code>\colorbox{red}{sur fond rouge}</code> (il faut la bibliothèque xcolor)</li>
+            </ul>
+        </section>
+
+        <section>
+          <h3>Polices (bis)</h3>
+            <ul>
+              <li class="fragment current-yellow">Tailles :<br>
+                <code>\tiny</code> minuscule,
+                  <code>\scriptsize</code> très petit,
+                  <code>\footnotesize</code> assez petit,
+                  <code>\small</code> petit,
+                  <code>\normalsize</code> normal,
+                  <code>\large</code> grand,
+                  <code>\Large</code> plus grand,
+                  <code>\LARGE</code> très grand,
+                  <code>\huge</code> énorme,
+                  <code>\Huge</code> géant<br>
+              </li>
+              <li class="fragment current-yellow">par exemple <code>{\Large Titre}</code></li>
+              <li class="fragment current-yellow">{\fontsize{3cm}{4cm}\selectfont C'est très grand!}</li>
+              <li class="fragment current-yellow">Choix de la police ...</li>
+            </ul>
+        </section>
+
+        <section>
+          <h3>Caractère et symboles particuliers</h3>
+            <ul>
+              <li class="fragment current-yellow">Accents, pas besoin avec unicode, mais pour info :<br><code>\'e \`e \^e \"e \~e \c{c}</code></li>
+              <li class="fragment current-yellow">les tirés :<br><code>$-$</code> (moins), <code>-</code> (césure), <code>--</code> (diapason), <code>---</code> (dialogue)</li>
+              <li class="fragment current-yellow">les points de suspension :<br><code>\dots</code>, <code>$\ldots$</code>, <code>$\cdots$</code></li>
+              <li class="fragment current-yellow">ligne horizontale :<br><code>\rule{\linewidth}{0.5mm}</code></li>
+            </ul>
+        </section>
+
+      </div><!-- End slides -->
+
+    </div><!-- End reveal -->
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      Reveal.initialize({
+        history: true,
+        slideNumber: true,
+        transition: 'linear',
+
+        math: {
+          // mathjax: 'http://cdn.mathjax.org/mathjax/latest/MathJax.js',
+          config: 'TeX-AMS_HTML-full'
+        },
+
+        dependencies: [
+          { src: 'lib/js/classList.js' },
+          { src: 'plugin/math/math.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true},
+          // { src: 'plugin/zoom-js/zoom.js', async: true },
+          // { src: 'plugin/notes/notes.js', async: true }
+          // { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          // { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>
