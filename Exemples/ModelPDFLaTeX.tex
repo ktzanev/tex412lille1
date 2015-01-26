@@ -1,14 +1,17 @@
-\documentclass[11pt]{article}
-\usepackage[a4paper]{geometry}
-\usepackage{mathtools,amssymb,bm,amsthm} % mathtools => amsmath
+\documentclass[11pt]{report} % type de document avec taille de police par défaut
+% =============================================================
+\usepackage[a4paper]{geometry} % la taille de la page
+\usepackage{mathtools,amssymb,bm,amsthm} % % pour des possibilités en math étendus (mathtools => amsmath)
 % --------------- PDFLaTeX spécifique
 \usepackage[utf8]{inputenc} % pour avoir ce fichier en utf8
-\usepackage[T1]{fontenc} % pour avoir les lettres accentués dans le resultat PDF
-\usepackage{lmodern} % pour utiliser cette police vectorielle
+\usepackage[T1]{fontenc} % pour avoir les lettres accentués dans le résultat PDF
+\usepackage{lmodern} % pour utiliser cette police vectorielle (elle utilise l'encodage T1 avec 256 lettres)
 \usepackage[francais]{babel} % pour franciser LaTeX
 % ---------------
+\usepackage{xcolor} % pour pouvoir utiliser des couleurs
 \usepackage{graphicx} % pour \includegraphics
 \usepackage[pdfencoding=auto]{hyperref} % pour les liens. En règle général il doit être le dernier package chargé.
+% =============================================================
 
 % ---------------
 \title{Mon titre}
@@ -18,12 +21,16 @@
 
 \begin{document}
 %==============================================================
+\begin{titlepage}
   \maketitle
 
   \begin{abstract}
     Mon résumé à mettre ici \dots
   \end{abstract}
 
+\end{titlepage}
+
+% --------------------
 \section{Introduction}
 
 Bla bla \dots

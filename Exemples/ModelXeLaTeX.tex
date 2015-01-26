@@ -1,0 +1,39 @@
+\documentclass[11pt]{report} % type de document avec taille de police par défaut
+% =============================================================
+\usepackage[a4paper]{geometry} % la taille de la page
+\usepackage{mathtools,amssymb,bm,amsthm} % pour des possibilités en math étendus (mathtools => amsmath)
+% --------------- XeLaTeX spécifique
+\usepackage{fontspec} % pour le bon encodage des PDFs => police lmodern
+\defaultfontfeatures{Ligatures=TeX} % pour avoir les ligatures standards
+\usepackage{polyglossia} % pour utiliser des langues autres que l'anglais
+\setmainlanguage{french} % si on écrit en français
+% ---------------
+\usepackage{xcolor} % pour pouvoir utiliser des couleurs
+\usepackage{graphicx} % pour \includegraphics
+\usepackage[pdfencoding=auto]{hyperref} % pour les liens. En règle général il doit être le dernier package chargé.
+%==============================================================
+
+% ---------------
+\title{Mon titre}
+\author{Mon Nom \and Ton Nom}
+\date{\today}
+% ---------------
+
+\begin{document}
+%==============================================================
+\begin{titlepage}
+  \maketitle
+
+  \begin{abstract}
+    Mon résumé à mettre ici \dots
+  \end{abstract}
+
+\end{titlepage}
+
+% --------------------
+\section{Introduction}
+
+Bla bla \dots
+
+%==============================================================
+\end{document}
