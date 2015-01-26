@@ -1,6 +1,6 @@
-\documentclass[11pt]{report} % type de document avec taille de police par défaut
+\documentclass[11pt,twoside,openright]{report} % type de document avec taille de police par défaut
 % =============================================================
-\usepackage[a4paper]{geometry} % la taille de la page
+\usepackage[a4paper]{geometry} % la "géométrie" de la page
 \usepackage{mathtools,amssymb,bm,amsthm} % % pour des possibilités en math étendus (mathtools => amsmath)
 % --------------- PDFLaTeX spécifique
 \usepackage[utf8]{inputenc} % pour avoir ce fichier en utf8
@@ -21,17 +21,14 @@
 
 \begin{document}
 %==============================================================
-\begin{titlepage}
-  \maketitle
+\maketitle
 
-  \begin{abstract}
-    Mon résumé à mettre ici \dots
-  \end{abstract}
-
-\end{titlepage}
+\begin{abstract}
+  Mon résumé à mettre ici \dots
+\end{abstract}
 
 % --------------------
-\section{Introduction}
+\chapter*{Introduction}
 
 Bla bla \dots
 
