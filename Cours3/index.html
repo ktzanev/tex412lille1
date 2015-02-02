@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="fr">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Cours 3 (TeX412)</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="./css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/night.css" id="theme">
+    <link rel="stylesheet" href="main.css" id="theme">
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <div class="slides">
+
+        <section data-background="#4d7e65" data-background-transition="zoom">
+          <h1>TeX412</h1>
+          <h2>(Xe)LaTeX & HTML</h2>
+          <h2>Cours 3</h2>
+          <div class="fragment roll-in">adresse web de cette présentation:
+            <h3>git.io/beW6</h3>
+          </div>
+          <div class="fragment roll-in">
+            et du cours:
+            <a href="http://ktzanev.github.io/tex412lille1/">ktzanev.github.io/tex412lille1</a>
+          </div>
+        </section>
+
+        <section>
+          <h3>Structure du document</h3>
+          <ul>
+            <li class="fragment current-yellow"><code>\part{Nom de la partie} % niveau -1</code><br> disponible que dans les classes <i>book</i> et <i>report</i></li>
+            <li class="fragment current-yellow"><code>\chapter{Nom du chapitre} % niveau 0</code><br> disponible que dans les classes <i>book</i> et <i>report</i></li>
+            <li class="fragment current-yellow"><code>\section{Nom de la section} % niveau 1</code></li>
+            <li class="fragment current-yellow"><code>\subsection{Nom de la sous-section} % niveau 2</code></li>
+            <li class="fragment current-yellow"><code>\subsubsection{Nom de la sous-sous-section} % niveau 3</code></li>
+            <li class="fragment current-yellow"><code>\paragraph{Nom du paragraphe} % niveau 4</code></li>
+            <li class="fragment current-yellow"><code>\subparagraph{Nom du sous-paragraphe} % niveau 5</code></li>
+            <li class="fragment current-yellow">Pour déterminer le niveaux de numérotation<code>\setcounter{secnumdepth}{3}</code></li>
+            <li class="fragment current-yellow">Il existe tous en version avec <code>*</code> pour ne pas être numérotés,<br> ex : <code>\chapter*{Introduction}</code></li>
+            <li class="fragment current-yellow">Pour modifier l'apparence des titres il y a la bibliothèque <a href="https://www.sharelatex.com/learn/Sections_and_chapters#Customize_chapters_and_sections">titlesec</a> : <code>\usepackage{titlesec}</code>.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Table des matières</h3>
+          <ul>
+            <li class="fragment current-yellow">Pour rajouter une table des matières : <code>\tableofcontents</code>.<br> Il faut compiler 2 fois (automatique dans ShareLaTeX).</li>
+            <li class="fragment current-yellow">Le niveau maximal inclus dans la table : <code>\setcounter{tocdepth}{3}</code>.</li>
+            <li class="fragment current-yellow">Pour rajouter à la table des matières, par exemple un chapitre on peut faire<br>
+              <code>\addcontentsline{toc}{chapter}{Introduction}</code>
+              <div class="fragment">
+                qui est utile pour rajouter par exemple des chapitres non numérotés (avec <code>*</code>).
+              </div>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <section>
+            <h3>Définitions, Propositions, Théorèmes, ...</h3>
+          </section>
+          <section>
+            <h4>Déclarations</h4>
+            <ul>
+              <li class="fragment current-yellow">Dans le préambule (avant \begin{document}):
+<pre>
+<code class="fragment current-yellow">\newtheorem{theorem}{Théorème}</code>
+<code class="fragment current-yellow">  \newtheorem{lemma}[theorem]{Lemme}</code>
+<code class="fragment current-yellow">  \newtheorem{proposition}[theorem]{Proposition}</code>
+<code class="fragment current-yellow">\theoremstyle{remark}</code>
+<code class="fragment current-yellow">  \newtheorem*{remark}{Remarque}</code>
+<code class="fragment current-yellow">  \newtheorem*{remarks}{Remarques}
+</code>
+<code class="fragment current-yellow">\theoremstyle{definition}</code>
+<code class="fragment current-yellow">  \newtheorem{definition}{Définition}[section]</code>
+</pre>
+              </li>
+              <li class="fragment current-yellow">À quoi sert <code>[theorem]</code> ?</li>
+              <li class="fragment current-yellow">À quoi sert <code>[section]</code> ? (soit pour tous, soit pour aucun)</li>
+              <li class="fragment current-yellow">À quoi sert <code>\theoremstyle</code> ?</li>
+            </ul>
+          </section>
+          <section>
+            <h4>Utilisation</h4>
+              <pre class="block">
+                <code>
+\begin{theorem}[Théorème de Baire]
+  Tout espace localement compact est \emph{de Baire}.
+\end{theorem}
+                </code>
+              </pre>
+              <div class="fragment current-yellow">et de même pour <i>lemma</i>, <i>proposition</i>, .... <br>
+              et même <code>proof</code> (démonstration) qui est prédéfinie:</div>
+              <pre class="block fragment">
+                <code>
+\begin{proof}
+  Soit $\mathcal{E}$ un espace localement compact...
+\end{proof}
+                </code>
+              </pre>
+          </section>
+
+        </section>
+
+        <section>
+          <h3>Références</h3>
+          <ul>
+            <li class="fragment current-yellow">Pour marquer une section, théorème, équation <code>\label{...}</code></li>
+            <li class="fragment current-yellow">Par exemple :
+              <ul>
+                <li class="fragment current-yellow roll-in"><code>\section{Premier résultats}\label{sec:premires}</code></li>
+                <li class="fragment current-yellow roll-in"><code>\begin{theorem}\label{thm:principal}</code></li>
+                <li class="fragment current-yellow roll-in"><code>\begin{equation}\label{eq:schrod}</code></li>
+              </ul>
+            </li>
+            <li class="fragment roll-in">Puis on utilise <code>\ref{...}</code> pour obtenir la référence<br>
+              et/ou <code>\pageref{...}</code> pour obtenir le page.
+            <div class="fragment">
+              Exemple:
+              <pre class="block fragment">
+                <code>
+Nous avons vu dans la section \ref{sec:premires}
+lors de la démonstration du théorème \ref{thm:principal}
+(à la page \pageref{thm:principal}) ...
+                </code>
+              </pre>
+            </div>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Le liens</h3>
+          Grace à la librairie <code>hyperref</code> :
+          <ul>
+            <li class="fragment current-yellow fade-in">Tous les <code>\ref</code> et <code>\pageref</code> deviennent des liens.</li>
+            <li class="fragment current-yellow fade-in">Les lignes dans la table des matières sont des liens.</li>
+            <li class="fragment current-yellow fade-in">Il y a une table des matières PDF et les infos auteur et titre sont renseignés dans le PDF (métadonnées).</li>
+            <li class="fragment current-yellow fade-in">On peut utiliser des liens web comme :<br>  <code>\url{http://fr.wikipedia.org/wiki/Théorème_de_Baire}</code><br>
+              ou<br>
+              <code>\href{http://fr.wikipedia.org/wiki/Théorème_de_Baire}{Baire sur Wikipedia}</code><br>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <section>
+            <h3>Listes</h3>
+          </section>
+          <section>
+            <h4>Types</h4>
+            <ul>
+              <li class="fragment current-yellow">Non numéroté:
+                <pre class="block">
+                  <code>
+  \begin{itemize}
+    \item Premier élément de la liste
+    \item Deuxième élément de la liste
+  \end{itemize}
+                  </code>
+                </pre>
+              </li>
+              <li class="fragment current-yellow">Numéroté:
+                <pre class="block">
+                  <code>
+  \begin{enumerate}
+    \item Premier élément de la liste
+    \item Deuxième élément de la liste
+  \end{enumerate}
+                  </code>
+                </pre>
+              </li>
+            </ul>
+          </section>
+          <section>
+            <h4>et encore ...</h4>
+            <ul>
+              <li class="fragment current-yellow">Imbriqués :
+                <pre class="block">
+                  <code>
+  \begin{enumerate}
+    \item ...
+    \item ...
+    \begin{itemize}
+      \item ...
+      \item ...
+    \end{itemize}
+    \item ...
+  \end{enumerate}
+                  </code>
+                </pre>
+              </li>
+              <li class="fragment roll-in">On peut personnaliser les liste, par exemple en utilisant la bibliothèque <code>\usepackage{enumitem}</code></li>
+            </ul>
+          </section>
+        </section>
+
+        <section>
+          <h3>En-tête et pied de page</h3>
+          <ul>
+            <li class="fragment current-yellow"><code>\pagestyle{empty}</code></li>
+            <li class="fragment current-yellow"><code>\pagestyle{plain}</code></li>
+            <li class="fragment current-yellow"> Pour pouvoir modifier les en-têtes et pieds de page facilement:<br>
+                <code>\usepackage{fancyhdr}</code><br>
+                <code class="fragment">\fancyhf{}</code>
+            </li>
+            <li class="fragment current-yellow">Puis on peut configurer avec<br>
+              <code>\lhead[...]{...}    \chead{...}    \rhead[...]{...}</code><br>
+              <code>\lfoot[...]{...}    \cfoot{...}    \rfoot[...]{...}</code>
+            </li>
+            <li class="fragment roll-in">Par exemple on peut dire <code>\cfoot{Page \thepage}</code></li>
+            <li class="fragment current-yellow">
+                <code>\pagestyle{fancy}</code> "remplace" <code>\pagestyle{plain}</code>
+            </li>
+            <li class="fragment fade-in">Et aussi pour gérer les lignes séparatrices:<br>
+              <code>\renewcommand{\headrulewidth}{0pt}</code><br>
+              <code>\renewcommand{\footrulewidth}{0.4pt}</code>
+            </li>
+          </ul>
+        </section>
+
+      </div><!-- End slides -->
+    </div><!-- End reveal -->
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      Reveal.initialize({
+        history: true,
+        slideNumber: true,
+        transition: 'linear',
+
+        math: {
+          // mathjax: 'http://cdn.mathjax.org/mathjax/latest/MathJax.js',
+          config: 'TeX-AMS_HTML-full'
+        },
+
+        dependencies: [
+          { src: 'lib/js/classList.js' },
+          { src: 'plugin/math/math.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true},
+          // { src: 'plugin/zoom-js/zoom.js', async: true },
+          // { src: 'plugin/notes/notes.js', async: true }
+          // { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          // { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>
