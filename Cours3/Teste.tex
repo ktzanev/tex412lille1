@@ -1,0 +1,36 @@
+\documentclass[11pt,twoside,openright]{report}
+% ===========================================================
+\usepackage[a4paper]{geometry} % la taille de la page
+\usepackage{mathtools,amssymb,bm,amsthm} % mathtools => amsmath
+% --------------- XeLaTeX spécifique
+\usepackage{fontspec} % fontenc pour xelatex => lmodern
+\usepackage{polyglossia} % le "babel" pour XeLaTeX
+  \setmainlanguage{french} % si on écrit en français
+\usepackage{xcolor} % pour pouvoir utiliser des couleurs
+\usepackage{blindtext}
+\usepackage[pdfencoding=auto]{hyperref}
+
+% ===========================================================
+
+\begin{document}
+  \begin{abstract}
+    \blindtext
+  \end{abstract}
+
+  \tableofcontents
+
+  \chapter*{Introduction}
+  \addcontentsline{toc}{chapter}{Introduction}
+
+  Hello World!
+
+  \part{Première partie}
+  \chapter{Bla-bla}
+
+  \blindmathtrue
+  \blindtext
+
+  \part{Deuxième partie}
+  \blinddocument
+
+\end{document}

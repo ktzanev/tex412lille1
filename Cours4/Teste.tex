@@ -1,0 +1,18 @@
+\documentclass[11pt,twoside,openright]{report}
+% ===========================================================
+\usepackage[a4paper]{geometry} % la taille de la page
+\usepackage{mathtools,amssymb,bm,amsthm} % mathtools => amsmath
+% --------------- XeLaTeX spécifique
+\usepackage{fontspec} % fontenc pour xelatex => lmodern
+\usepackage{polyglossia} % le "babel" pour XeLaTeX
+  \setmainlanguage{french} % si on écrit en français
+\usepackage{xcolor} % pour pouvoir utiliser des couleurs
+\usepackage{blindtext}
+
+% ===========================================================
+
+\begin{document}
+
+  Hello World\dots\ c'est mieux avec des maths: $\sum_{i=1}^n \sin(n \alpha)$ pour $\alpha \in \mathbb{R}$!
+
+\end{document}

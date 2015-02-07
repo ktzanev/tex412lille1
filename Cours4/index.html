@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="fr">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Cours 4 (TeX412)</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="./css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/night.css" id="theme">
+    <link rel="stylesheet" href="main.css" id="theme">
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <div class="slides">
+
+        <section data-background="#4d7e65" data-background-transition="zoom">
+          <h1>TeX412</h1>
+          <h2>(Xe)LaTeX & HTML</h2>
+          <h2>Cours 4</h2>
+          <div class="fragment roll-in">adresse web de cette présentation:
+            <h3>git.io/bM7Y</h3>
+          </div>
+          <div class="fragment roll-in">
+            et du cours:
+            <a href="http://ktzanev.github.io/tex412lille1/">ktzanev.github.io/tex412lille1</a>
+          </div>
+        </section>
+
+        <section>
+          <section>
+          <h2>Écrire des maths</h2>
+          </section>
+          <section>
+            <h3>En ligne (inline mode)</h3>
+            <ul>
+              <li class="fragment current-yellow"><code>$ \sum_{i=1}^n \sin(n \alpha) $</code></li>
+              <li class="fragment current-yellow"><code>\( \sum_{i=1}^n \sin(n \alpha) \)</code></li>
+              <li class="fragment current-yellow"><code>\begin{math} ... \end{math}</code></li>
+            </ul>
+          </section>
+          <section>
+            <h3>Centré, à la ligne (display mode)</h3>
+            <ul>
+              <li class="fragment current-yellow">
+                <pre class="block">
+                  <code>
+$$
+  \sum_{i=1}^n \sin(n \alpha)
+    \text{\quad pour \quad}
+      \alpha \in \mathbb{R}
+$$
+                  </code>
+                </pre>
+              </li>
+              <li class="fragment current-yellow">
+                <pre class="block">
+                  <code>
+\[
+  \sum_{i=1}^n \sin(n \alpha)
+    \text{\quad pour \quad}
+      \alpha \in \mathbb{R}
+\]
+                  </code>
+                </pre>
+              </li>
+              <li class="fragment current-yellow">
+                <pre class="block">
+                  <code>
+\begin{displaymath}
+  ...
+\end{displaymath}
+                  </code>
+                </pre>
+              </li>
+            </ul>
+          </section>
+          <section>
+            <h3>Avec des numéros d'équations</h3>
+            <ul>
+              <li class="fragment current-yellow">
+                <pre class="block">
+                  <code>
+\begin{equation}\label{eq:sommetrigo}
+  \sum_{i=1}^n \sin(n \alpha)
+    \text{\quad pour \quad}
+      \alpha \in \mathbb{R}
+\end{equation}
+                  </code>
+                </pre>
+              </li>
+              <li class="fragment current-yellow">
+                <pre class="block">
+                  <code>
+\begin{multline}\label{eq:treslongue}
+  p(x) = 3x^6 + 14x^5y + 590x^4y^2 + 19x^3y^3\\
+    - 12x^2y^4 - 12xy^5 + 2y^6 - a^3b^3
+\end{multline}
+                  </code>
+                </pre>
+              </li>
+              <li class="fragment current-yellow">
+                Il existe des versions étoilées <code>equation*</code>, <code>multiline*</code>,... sans numéro d'équation.
+              </li>
+              <li class="fragment current-yellow">
+                On peut utiliser <code>\eqref{...}</code> à la place de <code>\ref{...}</code>
+                pour obtenir, par exemple, (13) au lieu de 13.
+              </li>
+              <li class="fragment current-yellow">
+                Pour forcer la numérotation à gauche ou à droite, on peut utiliser les options de <code>\documentclass[...]{}</code> : <code>leqno</code> (l=left) et <code>reqno</code> (r=right).
+              </li>
+            </ul>
+          </section>
+          <section>
+            <h3>Avec plusieurs équations (alignées)</h3>
+            <ul>
+              <li class="fragment current-yellow">centrées (gather = réunir)
+                <pre class="block">
+                  <code>
+\begin{gather}
+    2x - 5y =  8 \\
+  3x^2 + 9y =  3a + c
+\end{gather}
+                  </code>
+                </pre>
+              </li>
+              <li class="fragment current-yellow"> alignées
+                <pre class="block">
+                  <code>
+\begin{align}
+  B' &= -\nabla \times E,\\
+  E' &= \nabla \times B - 4\pi j.
+\end{align}
+                  </code>
+                </pre>
+              </li>
+              <li class="fragment current-yellow">
+                En plus des versions <code>*</code> sans numéro,
+                il existent les versions "ed" pour mettre en mode math : <code>gathered</code>, <code>aligned</code>.
+              </li>
+              <li class="fragment current-yellow">
+                On peut mettre un <code>\label</code> par ligne numéroté.
+              </li>
+              <li class="fragment current-yellow">
+                On ajuster la "numérotation" avec <code>\tag{...}</code>, <code>\tag*{...}</code> ou <code>\notag</code>.
+              </li>
+              <li class="fragment current-yellow">
+                On peut insérer des lignes de texte avec <code>\intertext{...}</code>.
+              </li>
+              <li class="fragment current-yellow">
+                Si tout ça ne suffit pas, il y a la librairie <code>empheq</code>.
+              </li>
+            </ul>
+          </section>
+        </section>
+
+        <section>
+          <h3>Polices en mode math</h3>
+          <ul>
+            <li class="fragment current-yellow"><code>\mathcal{...}</code></li>
+            <li class="fragment current-yellow"><code>\mathfrak{...}</code></li>
+            <li class="fragment current-yellow"><code>\mathbb{...}</code></li>
+            <li class="fragment current-yellow"><code>\mathbf{...}</code> ou
+              <code>\bm{...}</code> (de préférence)</li>
+            <li class="fragment current-yellow"><code>\mathrm{...}</code></li>
+            <li class="fragment current-yellow"><code>\mathit{...}</code></li>
+            <li class="fragment current-yellow"><code>\mathsf{...}</code></li>
+            <li class="fragment"> Pour les tester, on peut faire
+              <pre class="block">
+                <code>
+\begin{gather*}
+  RQSz\pi          \\ \bm{RQSz\pi}      \\ \mathbf{RQSz\pi}  \\
+  \mathbb{RQSz\pi} \\ \mathcal{RQSz\pi} \\ \mathfrak{RQSz\pi}
+\end{gather*}
+                </code>
+              </pre>
+            </li>
+            <li class="fragment current-yellow">
+              La taille des polices (et la position des indices) peut-être contrôler avec
+              <code>\displaystyle</code>,
+              <code>\textstyle</code>,
+              <code>\scriptstyle</code> et
+              <code>\scriptscriptstyle</code>.
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Texte, espaces</h3>
+          <ul>
+            <li class="fragment current-yellow"><code>\text{...}</code> ou une des autres versions <code>\textbf{...}</code>, <code>\textsl{...}</code>, ...<br>
+            <div class="fragment">Par exemple <code>\[ \cos(x) \text{ pour } x \in A \]</code></div>
+            </li>
+            <li class="fragment current-yellow">Les espaces ne compte pas dans les formules, mais on peut en rajouter avec les commandes habituelles : <code>\,</code>, <code>\quad</code>, ... </li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Parenthèses</h3>
+          <ul>
+            <li class="fragment current-yellow">Taille automatique : <br>
+              <div class="fragment"><code>\left( ... \right)</code></div>
+              <div class="fragment"><code>\left\{ ... \right\}</code></div>
+              <div class="fragment">On peut à la place de <code>(</code> avoir
+                <code>\{</code>,
+                <code>[</code>,
+                <code>|</code>,
+                <code>\|</code>,
+                <code><</code>
+                ou sans rien
+                <code>.</code>
+              </div>
+              <div class="fragment"><code>\left\{ ... \right|</code> on peut mélanger</div>
+              <div class="fragment"><code>\left\{ ... \right.</code> pour ne mettre qu'à gauche par exemple</div>
+            </li>
+            <li class="fragment current-yellow">Taille manuelle : <br>
+              <div class="fragment"><code>\big( \Big( \bigg( \Bigg(</code></div>
+              <div class="fragment"><code>\big] \Big] \bigg] \Bigg]</code></div>
+            </li>
+        </section>
+
+
+        <section>
+          <section>
+            <h2>Tableaux et matrices</h2>
+          </section>
+          <section>
+            <h3>Tableaux</h3>
+            <ul>
+              <li class="fragment current-yellow"><code>tabular</code> n'est pas fait spécialement pour les maths.<br>
+                <pre class="block fragment">
+                  <code>
+\begin{tabular}{rcc}
+        & Blanc       & Noir  \\
+  Long  & $P=\frac13$ & $P=x$ \\
+  Court & $P=0$       & $P=y$
+\end{tabular}
+                  </code>
+                </pre>
+              </li>
+              <li class="fragment current-yellow"><code>array</code> est fait spécialement pour les maths.<br>
+                Il faut l'utiliser à l'intérieur d'une formule (mode math).
+                <pre class="block fragment">
+                  <code>
+$
+\begin{array}{rcc}
+               & \text{Blanc} & \text{Noir} \\
+  \text{Long}  & P=\frac13    & P=x \\
+  \text{Court} & P=0          & P=y
+\end{array}
+$
+                  </code>
+                </pre>
+              </li>
+            <li class="fragment current-yellow">N'oubliez pas l'existence de <a href="http://www.tablesgenerator.com/">www.tablesgenerator.com</a>.</li>
+            </ul>
+          </section>
+          <section>
+            <h3>Matrices</h3>
+            Les matrices sont des "array" avec les colonnes centrées et avec des espaces à droite et à gauche réduits.
+            <ul>
+              <li class="fragment current-yellow"><code>matrix</code> (sans délimiteurs par défaut)<br>
+                <pre class="block fragment">
+                  <code>
+\begin{matrix}
+  \alpha     & \beta^{*} \\
+  \gamma^{*} & \delta
+\end{matrix}
+                  </code>
+                </pre>
+              </li>
+              <li class="fragment current-yellow"><code>bmatrix</code> pour mettre entre [...]</li>
+              <li class="fragment current-yellow"><code>Bmatrix</code> pour mettre entre {...}</li>
+              <li class="fragment current-yellow"><code>pmatrix</code> pour mettre entre (...)</li>
+              <li class="fragment current-yellow"><code>vmatrix</code> pour mettre entre |...|</li>
+              <li class="fragment current-yellow"><code>Vmatrix</code> pour mettre entre ∥...∥</li>
+              <li class="fragment current-yellow"><code>smallmatrix</code> est une version avec des espaces réduits</li>
+            </ul>
+          </section>
+          <section>
+            <h3>Choix</h3>
+            <ul>
+              <li class="fragment current-yellow"><code>cases</code> est un cas particulier de "array" avec deux colonnes alignées à gauche, et une accolade à gauche.<br>
+                <pre class="block fragment">
+                  <code>
+$ (x-a)_+ =
+  \begin{cases}
+     x-a & x \geq a \\
+    0 & \text{sinon}
+  \end{cases}
+$
+                  </code>
+                </pre>
+              </li>
+              <li class="fragment current-yellow"><code>dcases</code> identique, mais les cellules sont en "display"</li>
+              <li class="fragment current-yellow"><code>dcases*</code> comme dcases, mais la deuxième colonne est en mode texte</li>
+            </ul>
+          </section>
+        </section>
+
+        <section>
+          <h3>Opérateurs</h3>
+          En plus des opérateurs prédéfinis comme: <br>
+          <code>\sin</code>, <code>\cos</code>, <code>\tan</code>, <code>\cot</code>,<br>
+          <code>\sinh</code>, <code>\cosh</code>, <code>\tanh</code>, <code>\coth</code>,<br>
+          <code>\arcsin</code>, <code>\arccos</code>, <code>\arctan</code>,<br>
+          <code>\exp</code>, <code>\log</code>, <code>\ln</code>, <code>\lg</code>,<br>
+          <code>\max</code>, <code>\min</code>, <code>\sup</code>, <br>
+          <code>\lim</code>, <code>\limsup</code>, <code>\liminf</code>,<br>
+          <code>\dim</code>, <code>\ker</code>, <code>\det</code>, <code>\hom</code>,<br>
+          <ul>
+            <li class="fragment current-yellow fade-in">On peut utiliser <code>\DeclareMathOperator</code> pour définir un opérateur
+            <div class="fragment">Par exemple à la place de l'anglais <code>\gcd</code> on peut faire :<br>
+              <code>\DeclareMathOperator{\pgcd}{pgcd}</code>
+
+            </div>
+            </li>
+            <li class="fragment current-yellow fade-in">
+              Si on souhaite définir un opérateur qui peut avoir des indices<br>
+              (comme <code>\lim</code>) il faut utiliser <code>\DeclareMathOperator*</code>
+            </li>
+            <li class="fragment current-yellow fade-in">Pour une utilisation ponctuelle, il y a <code>\operatorname</code> et <code>\operatorname*</code></li>
+          </ul>
+        </section>
+
+        <section>
+          <section>
+            <h3>Compléments</h3>
+          </section>
+          <section>
+            <h4>Indices</h4>
+            <ul>
+              <li class="fragment current-yellow"> Pour mettre plusieurs lignes d'indices existent : <br>
+                <code>\substack{...\\ ...}</code> et <code>subarray</code></li>
+              <li class="fragment current-yellow"> Pour mettre des indices dans les 4 coins : <br>
+                <code>\sideset{_1^2}{_3^4}\sum</code> </li>
+              <li class="fragment current-yellow"> Avec des accolades : <br>
+                <code>\underbrace{...}_{...}</code>, <code>\overbrace{...}^{...}</code> </li>
+              <li class="fragment current-yellow"> Avec des crochets : <br>
+                <code>\underbracket{...}_{...}</code>, <code>\overbracket{...}^{...}</code> </li>
+            </ul>
+          </section>
+          <section>
+            <h4>Fractions</h4>
+            <ul>
+              <li class="fragment current-yellow"> <code>\frac12</code> est la même chose que <code>\frac{1}{2}</code></li>
+              <li class="fragment current-yellow"> En plus de <code>\frac</code> il existent
+                <code>\dfrac</code>, <code>\tfrac</code>, <code>\cfrac</code>.
+              </li>
+            </ul>
+          </section>
+        </section>
+
+      </div><!-- End slides -->
+    </div><!-- End reveal -->
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      Reveal.initialize({
+        history: true,
+        slideNumber: true,
+        transition: 'linear',
+
+        math: {
+          // mathjax: 'http://cdn.mathjax.org/mathjax/latest/MathJax.js',
+          config: 'TeX-AMS_HTML-full'
+        },
+
+        dependencies: [
+          { src: 'lib/js/classList.js' },
+          { src: 'plugin/math/math.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true},
+          // { src: 'plugin/zoom-js/zoom.js', async: true },
+          // { src: 'plugin/notes/notes.js', async: true }
+          // { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          // { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>
