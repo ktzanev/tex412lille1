@@ -110,30 +110,66 @@
         </section>
 
         <section>
-          <h3>Références</h3>
-          <ul>
-            <li class="fragment current-yellow">Pour marquer une section, théorème, équation <code>\label{...}</code></li>
-            <li class="fragment current-yellow">Par exemple :
-              <ul>
-                <li class="fragment current-yellow roll-in"><code>\section{Premier résultats}\label{sec:premires}</code></li>
-                <li class="fragment current-yellow roll-in"><code>\begin{theorem}\label{thm:principal}</code></li>
-                <li class="fragment current-yellow roll-in"><code>\begin{equation}\label{eq:schrod}</code></li>
-              </ul>
-            </li>
-            <li class="fragment roll-in">Puis on utilise <code>\ref{...}</code> pour obtenir la référence<br>
-              et/ou <code>\pageref{...}</code> pour obtenir le page.
-            <div class="fragment">
-              Exemple:
-              <pre class="block fragment">
-                <code>
-Nous avons vu dans la section \ref{sec:premires}
-lors de la démonstration du théorème \ref{thm:principal}
-(à la page \pageref{thm:principal}) ...
-                </code>
-              </pre>
-            </div>
-            </li>
-          </ul>
+          <section>
+            <h3>Références, citations, notes</h3>
+          </section>
+          <section>
+            <h3>Références</h3>
+            <ul>
+              <li class="fragment current-yellow">Pour marquer une section, théorème, équation <code>\label{...}</code></li>
+              <li class="fragment current-yellow">Par exemple :
+                <ul>
+                  <li class="fragment current-yellow roll-in"><code>\section{Premier résultats}\label{sec:premires}</code></li>
+                  <li class="fragment current-yellow roll-in"><code>\begin{theorem}\label{thm:principal}</code></li>
+                  <li class="fragment current-yellow roll-in"><code>\begin{equation}\label{eq:schrod}</code></li>
+                </ul>
+              </li>
+              <li class="fragment roll-in">Puis on utilise <code>\ref{...}</code> pour obtenir la référence<br>
+                et/ou <code>\pageref{...}</code> pour obtenir le page.
+              <div class="fragment">
+                Exemple:
+                <pre class="block fragment">
+                  <code>
+  Nous avons vu dans la section \ref{sec:premires}
+  lors de la démonstration du théorème \ref{thm:principal}
+  (à la page \pageref{thm:principal}) ...
+                  </code>
+                </pre>
+              </div>
+              </li>
+            </ul>
+          </section>
+          <section>
+            <h3>Citations</h3>
+            <ul>
+              <li class="fragment current-yellow">Juste avant <code>\end{document}</code> il faut mettre les ouvrages que vous citer, de la façon suivante:
+                <pre class="block fragment" style="font-size:70%">
+                  <code>
+\begin{thebibliography}{Einst1905}
+
+  \bibitem[Lamp1994]{lamp}
+    L.~Lamport, \emph{\LaTeX: A Document Preparation System}.
+    Addison Wesley, Massachusetts, 2nd Edition, 1994.
+
+  \bibitem[Einst1905]{einstein}
+    A.~Einstein, \emph{Zur Elektrodynamik bewegter Körper}.
+    Annalen der Physik, 322(10):891–921, 1905.
+
+\end{thebibliography}
+                  </code>
+                </pre>
+              </li>
+              <li class="fragment current-yellow">Après pour citer on utilise par exemple <code>\cite{lamp}</code> qui va produire <code>[Lamp1994]</code>.</li>
+              <li class="fragment current-yellow">Si on désire une numérotation automatique des entrés, on peut omettre les étiquettes [Lamp1994], [Einst1905], ...</li>
+              <li class="fragment current-yellow">En cas d'une bibliographie abondante, on peut utiliser des systèmes des gestion plus performants, telle <code>biblatex</code></li>
+          </section>
+          <section>
+            <h3>Notes de bas de page</h3>
+            <ul>
+              <li class="fragment current-yellow">Pour rajouter une note de bas de page, il suffit de mettre <code>\footnote{Voilà une note}</code> à l'endroit désiré.</li>
+              <li class="fragment current-yellow">Pour changer le style de numérotation des notes, vous pouvez redéfinir <code>\thefootnote</code>.</li>
+            </ul>
+          </section>
         </section>
 
         <section>
