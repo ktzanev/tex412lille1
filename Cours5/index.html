@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="fr">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Cours 5 (TeX412)</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="./css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/night.css" id="theme">
+    <link rel="stylesheet" href="main.css" id="theme">
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <div class="slides">
+
+        <section data-background="#4d7e65" data-background-transition="zoom">
+          <h1>TeX412</h1>
+          <h2>(Xe)LaTeX & HTML</h2>
+          <h2>Cours 5</h2>
+          <div class="fragment roll-in">adresse web de cette présentation:
+            <h3>git.io/NKZp</h3>
+          </div>
+          <div class="fragment roll-in">
+            et du cours:
+            <a href="http://ktzanev.github.io/tex412lille1/">ktzanev.github.io/tex412lille1</a>
+          </div>
+        </section>
+
+        <section>
+          <h3>Les formats d'images</h3>
+          <ul>
+            <li class="fragment current-yellow">
+              <h4>Matriciels (Bitmap)</h4>
+              <ul>
+                <li  class="fragment current-yellow">JPG : idéal pour les photos</li>
+                <li  class="fragment current-yellow">PNG : idéal pour les illustrations, peut avoir des transparences.</li>
+                <li  class="fragment current-yellow">GIF : idéal pour les illustrations, pas de transparences, mais des animations possibles</li>
+              </ul>
+              <div class="fragment current-yellow">On peut utiliser les 3 formats avec LaTeX, XeLaTeX, PDFLaTeX et HTML.</div>
+            </li>
+            <li class="fragment current-yellow">
+              <h4>Vectoriels</h4>
+              <ul>
+                <li  class="fragment current-yellow">PDF : c'est le seul format accessible avec XeLaTeX, PDFLaTeX et LuaLaTeX</li>
+                <li  class="fragment current-yellow">EPS : c'est le seul format accessible avec LaTeX</li>
+                <li  class="fragment current-yellow">SVG : c'est le seul format accessible avec HTML</li>
+              </ul>
+              <div class="fragment current-yellow">Les logiciels d'éditions d'images vectoriels, export en général dans les trois formats.</div>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Inclure une image</h3>
+          Grâce à la bibliothèque <code>graphicx</code> il suffit de faire:
+          <p  class="fragment current-yellow">
+              <code>\includgraphics{</code>nom du fichier<code>}</code>
+          </p>
+          <ul>
+            <li  class="fragment current-yellow">
+              Pas besoin de mettre l'extension .pdf, .jpg, .png ou .gif
+            </li>
+            <li  class="fragment current-yellow">
+              Le fichier doit être dans le même répertoire que la source tex, ou ...
+            </li>
+            <li  class="fragment current-yellow">
+              si vos images sont dans un sous répertoire, par exemple <i>images</i>, on peut le signaler à LaTeX avec <code>\graphicspath{images/}</code>.
+            </li>
+            <li  class="fragment current-yellow">
+              La commande <code>\includgraphics</code> peut prendre des paramètres : <code>width</code>, <code>height</code>, <code>scale</code>, <code>angle</code>.<br>
+              <div class="fragment current-yellow">
+                Par exemple : <br>
+                <code>\includegraphics[height=5cm]{triangle.pdf}</code>
+              </div>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Les figures</h3>
+          <div class="fragment current-yellow">
+            Si on souhaite, en plus d'inclure l'image, d'y mettre un titre, de pouvoir le référencer, qu'il soit centré avec passage à la ligne ...
+          </div>
+          <div class="fragment current-yellow">
+            on peux utiliser la environnement <code>figure</code>.
+          </div>
+          <ul>
+            <li  class="fragment current-yellow" style="font-size:70%"> Exemple:
+              <pre class="block">
+                <code>
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=7cm]{sinc}
+  \caption{Le graphe de sinus cardinal.}
+  \label{fig:sinc}
+\end{figure}
+                </code>
+              </pre>
+            </li>
+            <li  class="fragment current-yellow">
+              Le paramètre <code>h</code> est pour "<code>[h]</code>ere" et <code>!</code> pour dire "vraiment". On peut utiliser aussi <code>[t]</code><i>op of the page</i>, ou <code>[b]</code><i>ottom of the page</i>.
+            </li>
+            <li  class="fragment current-yellow">
+              <code>\centering</code> c'est pour centrer l'image.
+            </li>
+            <li  class="fragment current-yellow">
+              <code>\caption</code> c'est pour mettre une légende (titre).
+            </li>
+            <li  class="fragment current-yellow">
+              <code>\lable</code> doit être mis après caption, si on en a besoin.
+            </li>
+            <li  class="fragment current-yellow">
+              Si on souhaite utiliser plusieurs images cote-à-cote dans une figure on peut utiliser l'environnement <code>subfigure</code>.
+            </li>
+            <li  class="fragment current-yellow">
+              Dans "figure" on n'est pas obligé d'avoir <code>includegraphics</code>, on peut mettre n'importe quel code, par exemple des commandes pour dessiner.
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Incruster une image</h3>
+          <div class="fragment current-yellow">
+            Si on souhaite que le texte coule autour de l'image, on peut utiliser la commande <code>wrapfigure</code> de la bibliothèque <code>wrapfig</code>
+          </div>
+          <ul>
+            <li  class="fragment current-yellow" style="font-size:70%"> Exemple:
+              <pre class="block">
+                <code>
+\begin{wrapfigure}{r}{0.5\textwidth}
+  \centering
+  \includegraphics[width=5cm]{sinc}
+  \caption{Le graphe de sinus cardinal.}
+  \label{fig:sinc}
+\end{wrapfigure}
+                </code>
+              </pre>
+            </li>
+            <li  class="fragment current-yellow">
+              Le paramètre <code>r</code> est pour "right". On peut utiliser aussi <code>[l]</code><i>eft</i>, <code>[i]</code><i>nner</i> et <code>[o]</code><i>uter</i>.
+            </li>
+            <li  class="fragment current-yellow">
+              Le deuxième paramètre <code>0.5\textwidth</code> indique que la largeur est la moitié de la page. On peut mettre ici par exemple <code>10 cm</code>.
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <section>
+            <h3>Dessiner avec LaTeX</h3>
+            <div class="fragment current-yellow">Il existe plusieurs "langages" qui permettent de dessiner avec LaTeX</div>
+            <ul>
+              <li class="fragment current-yellow">L'environnement <a target="_blank" href="http://fr.wikibooks.org/wiki/LaTeX/Dessiner_avec_LaTeX/R%C3%A9alisation_de_graphiques_math%C3%A9matiques">picture</a> natif dans LaTeX, mais très pauvre.</li>
+              <li class="fragment current-yellow">Le langage <a target="_blank" href="http://tex.loria.fr/prod-graph/f-mpman-2.pdf">metapost</a> qui est compilé avec la commande "metapost". Très performant en 2D, mais nécessite un outil externe et le résultat est en EPS.</li>
+              <li class="fragment current-yellow">Le langage <a target="_blank" href="http://asymptote.sourceforge.net/">Asymptote</a> qui est inspiré de metapost. Très performant en 3D, mais nécessite un outil externe.</li>
+              <li class="fragment current-yellow">Le langage <a target="_blank" href="http://fr.wikibooks.org/wiki/LaTeX/Dessiner_avec_LaTeX/Dessiner_avec_PSTricks">PSTicks</a> qui peut-être écrit directement dans LaTeX. Le résultat est en EPS. N'est pas fait à la base pour [Xe|Lua|PDF]LaTeX.</li>
+              <li class="fragment current-yellow">Le langage <a target="_blank" href="http://fr.wikibooks.org/wiki/LaTeX/Dessiner_avec_LaTeX/Dessiner_avec_PSTricks">TikZ</a> qui peut-être écrit directement dans LaTeX. Il est inspiré de metapost et PSTrick, mais plus moderne. Fonctionne à merveille avec toutes les versions de [Xe|Lua|PDF][La|Con]TeX aussi bien en PS qu'en PDF. <br>
+              C'est le langage que je vous conseil !
+              </li>
+            </ul>
+          </section>
+
+          <section>
+            <h4>TikZ (quelques notions)</h4>
+            <ul>
+              <li class="fragment current-yellow"><a target="_blank" href="http://pgf.sourceforge.net/pgf_CVS.pdf">La documentation</a> est fantastique, mais fait plus de 1000 pages !</li>
+              <li class="fragment current-yellow">Il existe des manuels plus <a target="_blank" href="http://math.et.info.free.fr/TikZ/bdd/TikZ-Impatient.pdf">concis et en français</a>.</li>
+              <li class="fragment current-yellow">On peut voir plusieurs exemples sur le site <a target="_blank" href="http://www.texample.net/tikz/examples/">texemple.net</a> (et pas que de TikZ par ailleurs).</li>
+              <li class="fragment current-yellow">Il faut inclure la bibliothèque <code>\usepackage{tikz}</code>.</li>
+              <li class="fragment current-yellow">Puis selon les besoin on peut rajouter des possibilités avec <code>\usetikzlibrary{...}</code>.</li>
+              <li class="fragment current-yellow">Premier exemple:
+                <pre class="block">
+                  <code>
+\begin{tikzpicture}
+  \fill[red] (0,0) circle(1 cm);
+  \draw[very thick,<->] (-1,0) -- (1,0);
+  \path (0,0) node[above]{$d$};
+\end{tikzpicture}
+                  </code>
+                </pre>
+              </li>
+              <li class="fragment current-yellow">Attention, toute commande se termine par <code>;</code> (point-virgule).</li>
+              <li class="fragment current-yellow">Les coordonnées son par défaut en <i>cm</i> et les angles en <i>deg</i>.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h4>TikZ (les commandes de base)</h4>
+            <ul>
+              <li class="fragment current-yellow"><code>\path ... ;</code> est la commande de base qui "construit" un chemin.</li>
+              <li class="fragment current-yellow"><code>\draw ... ;</code> est la commande pour dessiner. C'est un raccourcie de <code>\path[draw] ... ;</code>.</li>
+              <li class="fragment current-yellow"><code>\fill ... ;</code> est la commande pour remplir. C'est un raccourcie de <code>\path[fill] ... ;</code>.</li>
+              <li class="fragment current-yellow">On peut combiner les deux de plusieurs façons, mais probablement le plus simple est de faire<code>\path[fill,draw] ... ;</code>.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h4>TikZ (les coordonnées)</h4>
+            <ul>
+              <li class="fragment current-yellow"><code>(1,2)</code> c'est la même chose que <code>(1cm,2cm)</code>, mais on peut utiliser aussi d'autres unités.</li>
+              <li class="fragment current-yellow"><code>(35:2)</code> en coordonnées polaires : angle de 35° et distance de 2cm.</li>
+              <li class="fragment current-yellow"><code>+(1,1)</code> relativement au dernier point courant, sans changer de point courant.</li>
+              <li class="fragment current-yellow"><code>++(1,1)</code> relativement au dernier point courant, et devient le point courant.</li>
+              <li class="fragment current-yellow"><code>coordinate (A)</code> enregistre la position du point courant en A. Puis on peut le réutiliser avec (A) à la place de coordonnées explicites.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h4>TikZ (les opérations de base)</h4>
+            <ul>
+              <li class="fragment current-yellow"><code>(A) -- (B)</code> : ligne droite entre (A) et (B)</li>
+              <li class="fragment current-yellow"><code>(A) circle (1cm)</code> :  cercle de centre (A) et de rayon 1cm</li>
+              <li class="fragment current-yellow"><code>(A) ellipse (1cm and 2cm)</code> : ellipse de rayons 1cm et 2cm</li>
+              <li class="fragment current-yellow"><code>(A) arc (0:90:1cm)</code> : arc de cercle de rayon 1cm qui débute en (A), entre les angles 0° et 90°.</li>
+              <li class="fragment current-yellow"><code> (A) .. controls (1,1) and (2,1) .. (B)</code> : courbe de Bézier entre (A) et (B), avec points de contrôle (1,1) et (2,1)</li>
+              <li class="fragment current-yellow"><code>(A) rectangle (B)</code> : rectangle avec côtés // aux axes et coins opposés (A) et (B)</li>
+              <li class="fragment current-yellow"><code>(A) grid (B)</code> : une gille à la place du rectangle</li>
+              <li class="fragment current-yellow"><code>plot ({\x},{sin(\x r)})</code> : dessine la fonction sinus (en radians)</li>
+              <li class="fragment current-yellow"><code>(A) node {Text}</code> : place le texte centré en (A)</li>
+            </ul>
+          </section>
+
+          <section>
+            <h4>TikZ (les transformations)</h4>
+            <ul>
+              <li class="fragment current-yellow"><code>[xshift=1cm]</code> : décalage à droite de 1cm</li>
+              <li class="fragment current-yellow"><code>[yshift=-1em]</code> : décalage vers le bas de 1em</li>
+              <li class="fragment current-yellow"><code>[rotate=70]</code> : rotation d'angle 70°</li>
+              <li class="fragment current-yellow"><code>[scale=1.5]</code> : homothétie de rapport 1.5</li>
+              <li class="fragment current-yellow">Ces transformation n'affecte que les coordonnées explicites, mais pas les points nommés (comme <code>(A)</code>), ni les épaisseurs des lignes</li>
+              <li class="fragment current-yellow">Quand il y a plusieurs transformations ou options (comme <code>[xshift=25mm, rotate=30]</code>) elles sont exécutées de gauche à droite </li>
+              <li class="fragment current-yellow">Si on souhaite qu'une transformation ou une option s'applique à plusieurs chemins on peut utiliser l'environnement <code>scope</code> :
+                <pre class="block fragment">
+                  <code>
+\begin{scope}[xshift=25mm,rotate=30]
+  \fill[red] (0,0) circle(1 cm);
+  \draw[very thick,<->] (-1,0) -- (1,0);
+  \path (0,0) node[above]{$d$};
+\end{scope}
+                  </code>
+                </pre>
+              </li>
+            </ul>
+          </section>
+
+          <section>
+            <h4>TikZ (les options)</h4>
+            <ul>
+              <li class="fragment current-yellow"><code>[red]</code> pour dessiner et remplir en rouge. La couleur peut être <code>red</code>, <code>blue</code>, ... et aussi <code>red!30!blue</code></li>
+              <li class="fragment current-yellow"><code>[draw=orange]</code> pour dessiner en orange et <code>[fill=yellow]</code> pour remplir en jaune</li>
+              <li class="fragment current-yellow"><code>[fill opacity=.7]</code> le remplissage est opaque à 70% (par défaut c'est 1 = 100%)</li>
+              <li class="fragment current-yellow"><code>[very thin]</code> pour des lignes très fines. Un autre exemple est <code>[ultra thick]</code> pour des lignes ultra épaisses</li>
+              <li class="fragment current-yellow"><code>[->]</code> pour que la ligne se termine avec une flèche. Il existe plusieurs type de flèches, par exemple <code>[-latex]</code>,<code>[-stealth]</code>, <code>[-|]</code>, ...</li>
+              <li class="fragment current-yellow"><code>[rounded corners=3mm]</code> pour arrondir les coins</li>
+              <li class="fragment current-yellow">Pour <code>plot</code> il y a plusieurs options comme:
+                 <ul>
+                    <li><code>[domain=0:4]</code> pour dire que <code>\x</code> varie entre 0 et 4</li>
+                    <li><code>samples=100</code> pour utiliser 100 points lors du plot (par défaut c'est 20)</li>
+                    <li><code>smooth</code> pour lisser la courbe</li>
+                  </ul>
+              </li>
+            </ul>
+          </section>
+
+          <section>
+            <h4>TikZ (compléments)</h4>
+            <ul>
+              <li class="fragment current-yellow">Pour dessiner des fonctions (y compris en 3D) il y a la bibliothèque <code>\usepackage{pgfplots}</code>. Par exemple:
+                <pre class="block fragment">
+                  <code>
+\begin{axis}
+  \addplot3[surf,domain=0:360] {cos(x)*cos(y)};
+\end{axis}
+                  </code>
+                </pre>
+              </li>
+              <li class="fragment current-yellow">Pour des opérations à répétition, il y a la commande très performante <code>\foreach</code>. Par exemple :
+                <pre class="block fragment">
+                  <code>
+\foreach[evaluate={\f=\p/\q;\r=1/(2*\q^2)}]
+  \p/\q in {0/1,1/1,1/2,2/1,3/2,1/3}{
+    \draw (\f,\r) circle(\r) node[scale=2*\r]{$\frac{\p}{\q}$};
+  }
+                  </code>
+                </pre>
+              </li>
+
+            </ul>
+          </section>
+        </section>
+
+      </div><!-- End slides -->
+    </div><!-- End reveal -->
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      Reveal.initialize({
+        history: true,
+        slideNumber: true,
+        transition: 'linear',
+
+        math: {
+          // mathjax: 'http://cdn.mathjax.org/mathjax/latest/MathJax.js',
+          config: 'TeX-AMS_HTML-full'
+        },
+
+        dependencies: [
+          { src: 'lib/js/classList.js' },
+          { src: 'plugin/math/math.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true},
+          // { src: 'plugin/zoom-js/zoom.js', async: true },
+          // { src: 'plugin/notes/notes.js', async: true }
+          // { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          // { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>
