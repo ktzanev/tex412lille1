@@ -51,7 +51,7 @@
                 <li  class="fragment current-yellow">EPS : c'est le seul format accessible avec LaTeX</li>
                 <li  class="fragment current-yellow">SVG : c'est le seul format accessible avec HTML</li>
               </ul>
-              <div class="fragment current-yellow">Les logiciels d'éditions d'images vectoriels, export en général dans les trois formats.</div>
+              <div class="fragment current-yellow">Les logiciels d'éditions d'images vectoriels, exportent en général dans les trois formats.</div>
             </li>
           </ul>
         </section>
@@ -85,7 +85,7 @@
         <section>
           <h3>Les figures</h3>
           <div class="fragment current-yellow">
-            Si on souhaite, en plus d'inclure l'image, d'y mettre un titre, de pouvoir le référencer, qu'il soit centré avec passage à la ligne ...
+            Si on souhaite, en plus d'inclure l'image, d'y mettre un titre, de pouvoir la référencer, qu'elle soit centrée avec passage à la ligne ...
           </div>
           <div class="fragment current-yellow">
             on peux utiliser la environnement <code>figure</code>.
@@ -116,7 +116,7 @@
               <code>\lable</code> doit être mis après caption, si on en a besoin.
             </li>
             <li  class="fragment current-yellow">
-              Si on souhaite utiliser plusieurs images cote-à-cote dans une figure on peut utiliser l'environnement <code>subfigure</code>.
+              Si on souhaite utiliser plusieurs images cote-à-cote dans une figure, on peut utiliser l'environnement <code>subfigure</code>.
             </li>
             <li  class="fragment current-yellow">
               Dans "figure" on n'est pas obligé d'avoir <code>includegraphics</code>, on peut mettre n'importe quel code, par exemple des commandes pour dessiner.
@@ -173,7 +173,7 @@
               <li class="fragment current-yellow">Il existe des manuels plus <a target="_blank" href="http://math.et.info.free.fr/TikZ/bdd/TikZ-Impatient.pdf">concis et en français</a>.</li>
               <li class="fragment current-yellow">On peut voir plusieurs exemples sur le site <a target="_blank" href="http://www.texample.net/tikz/examples/">texemple.net</a> (et pas que de TikZ par ailleurs).</li>
               <li class="fragment current-yellow">Il faut inclure la bibliothèque <code>\usepackage{tikz}</code>.</li>
-              <li class="fragment current-yellow">Puis selon les besoin on peut rajouter des possibilités avec <code>\usetikzlibrary{...}</code>.</li>
+              <li class="fragment current-yellow">Puis selon les besoins on peut rajouter des possibilités avec <code>\usetikzlibrary{...}</code>.</li>
               <li class="fragment current-yellow">Premier exemple:
                 <pre class="block">
                   <code>
@@ -233,8 +233,8 @@
               <li class="fragment current-yellow"><code>[yshift=-1em]</code> : décalage vers le bas de 1em</li>
               <li class="fragment current-yellow"><code>[rotate=70]</code> : rotation d'angle 70°</li>
               <li class="fragment current-yellow"><code>[scale=1.5]</code> : homothétie de rapport 1.5</li>
-              <li class="fragment current-yellow">Ces transformation n'affecte que les coordonnées explicites, mais pas les points nommés (comme <code>(A)</code>), ni les épaisseurs des lignes</li>
-              <li class="fragment current-yellow">Quand il y a plusieurs transformations ou options (comme <code>[xshift=25mm, rotate=30]</code>) elles sont exécutées de gauche à droite </li>
+              <li class="fragment current-yellow">Ces transformations n'affecte que les coordonnées explicites, mais pas les points nommés (comme <code>(A)</code>), ni les épaisseurs des lignes</li>
+              <li class="fragment current-yellow">Quand il y a plusieurs transformations ou options (comme <code>[xshift=25mm, rotate=30]</code>) elles sont exécutées de gauche à droite</li>
               <li class="fragment current-yellow">Si on souhaite qu'une transformation ou une option s'applique à plusieurs chemins on peut utiliser l'environnement <code>scope</code> :
                 <pre class="block fragment">
                   <code>
