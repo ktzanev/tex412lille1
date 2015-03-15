@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="fr">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Cours 7 (TeX412)</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="./css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/night.css" id="theme">
+    <link rel="stylesheet" href="main.css" id="theme">
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <div class="slides">
+
+        <section data-background="#4d7e65" data-background-transition="zoom">
+          <h1>TeX412</h1>
+          <h2>(Xe)LaTeX & HTML</h2>
+          <h2>Cours 7</h2>
+          <div class="fragment roll-in">adresse web de cette présentation:
+            <h3>??</h3>
+          </div>
+          <div class="fragment roll-in">
+            et du cours:
+            <a href="http://ktzanev.github.io/tex412lille1/">ktzanev.github.io/tex412lille1</a>
+          </div>
+        </section>
+
+        <section>
+          <section>
+            <h3>HTML5 + CSS3 + JS5</h3>
+              <img class="fragment" src="images/html5css3js5.png" alt="Logos">
+          </section>
+
+          <section>
+            <ul>
+              <li class="fragment current-yellow"><abbr title="Hypertext Markup Language">HTML5</abbr> est un langage à balises, qui fait partie d'une famille de langages dont les autres membres sont <abbr  title="Extensible Markup Language">XML</abbr>, <abbr  title="Scalable Vector Graphics">SVG</abbr>, <abbr  title="Mathematical Markup Language">MathML</abbr>, ...<br>
+                Son support est un fichier texte avec extension <code>html</code> et au type MIME <code>text/html</code>.
+              </li>
+              <li class="fragment current-yellow"><abbr  title="Cascading Style Sheets">CSS3</abbr> est un langage de description de données structurées en arbre.<br>
+                Son support est un fichier texte avec extension <code>css</code> et au type MIME <code>text/css</code>.
+              </li>
+              <li class="fragment current-yellow"><abbr  title="JavaScript">JS</abbr> est un langage de programmation à part entière, créé à la base pour rendre dynamique les pages web en les modifiants.<br>
+                Son support est un fichier texte avec extension <code>js</code> et au type MIME <code>application/javascript</code>.
+              </li>
+              <li class="fragment current-yellow"><abbr  title="Scalable Vector Graphics">SVG</abbr> est un langage à balises pour décrire des images vectorielles.<br>
+                Son support est un fichier texte avec extension <code>svg</code> et au type MIME <code>image/svg+xml</code>. Il peut être aussi inclus directement dans une page web avec la balise <code>&lt;svg&gt;</code>.
+              </li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Histoire (approximative!)</h3>
+            <ul>
+              <li class="fragment current-yellow">1991 : HTML (créé par <a href="http://fr.wikipedia.org/wiki/Tim_Berners-Lee" target="_blanck">Tim Berners-Lee</a>)</li>
+              <li class="fragment current-yellow">1994 : HTML 2</li>
+              <li class="fragment current-yellow">1996 : CSS 1 + JavaScript 1</li>
+              <li class="fragment current-yellow">1997 : HTML 4</li>
+              <li class="fragment current-yellow">1998 : CSS 2</li>
+              <li class="fragment current-yellow">2000 : XHTML 1</li>
+              <li class="fragment current-yellow">2002 : Tableless Web Design</li>
+              <li class="fragment current-yellow">2005 : AJAX</li>
+              <li class="fragment current-yellow">2009 : HTML 5 + CSS 3</li>
+              <li class="fragment current-yellow">2010 : JS 5 (qui est en fait 1.8.2 ~ ECMAScript 5)</li>
+            </ul>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h3>HTML5</h3>
+            <pre class="block">
+              <code>
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;fr&quot;&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;Exemple minimal&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;!-- Un commentaire --&gt;
+    Bonjour le monde!
+  &lt;/body&gt;
+&lt;/html&gt;
+              </code>
+            </pre>
+            <div class="fragment current-yellow">
+              Comme en LaTeX : plusieurs espaces consecutifs = 1 espace. Et le passage à la ligne = 1 espace.
+            </div>
+          </section>
+          <section>
+            <h3>L'arbre (DOM) d'un document HTML</h3>
+            <div class="half fragment">
+              <pre class="block">
+                <code>
+
+
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+  &lt;head&gt;
+    &lt;title&gt;Alchemy for beginners&lt;/title&gt;
+    &lt;script src=&quot;BlackMagic.js&quot;&gt;&lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Chapter 1: Equipment&lt;/h1&gt;
+    &lt;p&gt;This is what an &lt;em&gt;alchemist's bottle&lt;/em&gt; looks like:&lt;/p&gt;
+    &lt;img src=&quot;StrangeBottle.jpg&quot;&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+                </code>
+              </pre>
+            </div>
+            <div class="half fragment"><img src="images/dom_tree.png" alt="DOM Tree"></div>
+            <div> Pour visualiser l'arbre DOM : <a href="http://software.hixie.ch/utilities/js/live-dom-viewer/" target="_blank">Live DOM Viewer</a></div>
+          </section>
+
+          <section>
+            <h4>Comment créer des pages HTML ?</h4>
+            <ul>
+              <li class="fragment current-yellow">
+                Avec un éditeur de texte
+                <ul>
+                  <li class="fragment current-yellow">simple : gedit (Linux), Notepad (Windows), TextEdit (Mac)</li>
+                  <li class="fragment current-yellow">performant : Emacs, vi(m), Notepad++, Sublime Text, ...</li>
+                  <li class="fragment current-yellow">spécialisé : Web Storm, Brackets, Atom, LightTable, ...</li>
+                </ul>
+              </li>
+              <li class="fragment current-yellow">Avec un logiciel WYSIWYG dédié (ce n'est plus à la mode) : Adobe Dreamweaver, iWeb, Nvu, KompoZer, ...
+              </li>
+              <li class="fragment current-yellow">En ligne :
+                <ul class="fragment current-yellow">
+                  <li><a target="_blank" href="http://cssdeck.com/">cssdeck.com</a></li>
+                  <li><a target="_blank" href="http://plnkr.co/">Plnkr.co</a></li>
+                  <li><a target="_blank" href="http://codepen.io">codepen.io</a></li>
+                  <li><a target="_blank" href="http://jsfiddle.net/">jsfiddle.net</a></li>
+                  <li><a target="_blank" href="http://dabblet.com/">dabblet.com</a></li>
+                  <li><a target="_blank" href="https://thimble.webmaker.org/fr/">Mozilla Thimble</a></li>
+                </ul>
+              </li>
+              <li class="fragment current-yellow" target="_blank">À partir d'autres langages à balises, comme <a href="http://www.ctrlshift.net/project/markdowneditor/" target="_blank">markdown</a>, <a href="http://borgar.github.io/textile-js/" target="_blank">textile</a>, <a href="http://en.wikipedia.org/wiki/TeX4ht">LaTeX</a>, ...
+              </li>
+              <li class="fragment current-yellow">On peut vérifier si le code HTML est correcte dans le <a href="http://validator.w3.org" target="_blank">validateur de HTML</a>.
+            </ul>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h3>Les balises (syntaxe)</h3>
+            <ul>
+              <li  class="fragment current-yellow">
+                <code>&lt;balise&gt;...&lt;/balise&gt;</code> :
+                  balise <em>non-void</em> (peut contenir du texte et/ou d'autres éléments)
+              </li>
+              <li  class="fragment current-yellow">
+                <code>&lt;balise&gt;</code>
+                  ou
+                <code>&lt;balise/&gt;</code> :
+                  pour une balise <em>void</em> (ne peut pas contenir d'autres éléments)
+              </li>
+              <li  class="fragment current-yellow">
+                <code>&lt;balise attribut&gt;</code>
+                  ou
+                <code>&lt;balise attribut="quelque chose"&gt;</code> :
+                  une balise peut contenir 0, 1 ou plusieurs attributs qui spécifient ou changent son comportement.
+              </li>
+              <li  class="fragment current-yellow">
+                Pas de croisement : <code>&lt;paul&gt; &lt;thom&gt; &lt;/paul&gt; &lt;/thom&gt;</code> est interdit.
+              </li>
+              <li  class="fragment current-yellow">
+                Pas d'espace entre <code>&lt;</code> et le nom de la balise, mais on peut avoir des espaces avant <code>&gt;</code>. Par exemple <code>&lt;paul &gt;</code> est ok.
+              </li>
+              <li  class="fragment current-yellow">
+                Il est souhaitable d'écrire les balises en minuscules, à part pour <code>&lt;!DOCTYPE&gt;</code>.
+              </li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Les balises de l'en-tête</h3>
+            <ul>
+              <li  class="fragment current-yellow">
+                <code>&lt;meta&gt;</code> (void)
+                  permet de renseigner des informations sur le document HTML en fonction des attributs utilisées<br>
+                  Exemple: <br>
+                    <code>&lt;meta charset=&quot;UTF-8&quot;&gt;</code><br>
+                    <code>&lt;meta name=&quot;keywords&quot; content=&quot;LaTeX, XeLaTeX, PDF&quot;&gt;</code>
+              </li>
+              <li  class="fragment current-yellow">
+                <code>&lt;title&gt;</code> (non-void)
+                  Le titre de la page HTML<br>
+                  Exemple: <code>&lt;title&gt;Cours 7 (TeX412)&lt;/title&gt;</code>
+              </li>
+              <li  class="fragment current-yellow">
+                <code>&lt;link&gt;</code> (void)
+                  Définit une relation (inclusion) avec un autre ressource. Utilisé dans 99% des cas pour inclure un fichier CSS (style).<br>
+                  Exemple: <code>&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;theme.css&quot;&gt;</code>
+              </li>
+              <li  class="fragment current-yellow">
+                <code>&lt;style&gt;</code> (non-void)
+                  Pour ecrire le style CSS directement dans le HTML.<br>
+                  Exemple:
+                    <code>
+&lt;style&gt; body {color:red;} &lt;/style&gt;
+                    </code>
+              </li>
+              <li  class="fragment current-yellow">
+                <code>&lt;script&gt;</code> (non-void)
+                  Permet d'inclure ou d'écrire du JavaScript.<br>
+                  Exemple: <code>&lt;script src=&quot;MathJax.js&quot;&gt;&lt;/script&gt;</code>
+              </li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Balises particulières</h3>
+            <ul>
+              <li class="fragment current-yellow" ><code>&lt;!--...--&gt;</code> commentaire</li>
+              <li class="fragment current-yellow" ><code>&lt;!DOCTYPE html&gt;</code> première ligne obligatoire pour HTML5</li>
+              <li class="fragment current-yellow" ><code>&lt;html&gt;</code></li>
+              <li class="fragment current-yellow subtag" >&nbsp;<code>&lt;head&gt;</code></li>
+              <li class="fragment current-yellow subtag" >&nbsp;<code>&lt;body&gt;</code></li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Balises fondamentales</h3>
+            <ul>
+              <li class="fragment current-yellow">Balises de base
+                <ul>
+                  <li class="fragment current-yellow"><code>&lt;div&gt;</code> la conteneur de base <em>block</em>
+                    (<a href="http://dabblet.com/gist/3e141d95513b27a4bbc5" target="exemple">exemple</a>)
+                  </li>
+                  <li class="fragment current-yellow"><code>&lt;span&gt;</code> la conteneur de base <em>inline</em> (<a href="http://dabblet.com/gist/e586030952be736189e7" target="exemple">exemple</a>)</li>
+                </ul>
+              </li>
+              <li class="fragment current-yellow">Balises de liens
+                <ul>
+                  <li class="fragment current-yellow"><code>&lt;img&gt;</code> pour inclure une image  (<a href="http://dabblet.com/gist/043e30ff1c328063f5f6" target="exemple">exemple</a>)</li>
+                  <li class="fragment current-yellow"><code>&lt;a&gt;</code> pour créer un lien (<a href="http://dabblet.com/gist/59f53ff244a7c4982c2a" target="exemple">exemple</a>)</li>
+                </ul>
+              </li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Balises pour structurer et formater un texte</h3>
+            <ul>
+              <li class="fragment current-yellow">
+                <code>&lt;h1&gt;</code> &ndash; <code>&lt;h6&gt;</code> les titres de niveaux 1 à 6 (<a href="http://dabblet.com/gist/c5bfa781fd194db1dc8f" target="exemple">exemple</a>)
+              </li>
+              <li class="fragment current-yellow">
+                <code>&lt;p&gt;</code> un paragraphe  (<a href="http://dabblet.com/gist/0177f3cde7ffb2174ae1" target="exemple">exemple</a>)
+              </li>
+              <li class="fragment current-yellow">
+                <code>&lt;br&gt;</code> passage à la ligne (<em>void</em>) (<a href="http://dabblet.com/gist/a86f0e04e41e090da387" target="exemple">exemple</a>)
+              </li>
+              <li class="fragment current-yellow">
+                <code>&lt;hr&gt;</code> ligne horizontale (<em>void</em>) (<a href="http://dabblet.com/gist/e5c145cb3b3c773e5481" target="exemple">exemple</a>)
+              </li>
+              <li class="fragment current-yellow">
+                <code>&lt;b&gt;, &lt;strong&gt;</code> gras (important) (<a href="http://dabblet.com/gist/5f975b8a92f83ecf614a" target="exemple">exemple</a>)
+              </li>
+              <li class="fragment current-yellow">
+                <code>&lt;i&gt;, &lt;em&gt;</code> italique (mise en valeur) (<a href="http://dabblet.com/gist/f09a54294a3f274a5a5d" target="exemple">exemple</a>)
+              </li>
+              <li class="fragment current-yellow">
+                <code>&lt;s&gt;, &lt;del&gt;</code> barré (supprimé) (<a href="http://dabblet.com/gist/70dfb1bd81eb92726a2b" target="exemple">exemple</a>)
+              </li>
+              <li class="fragment current-yellow">
+                <code>&lt;u&gt;, &lt;ins&gt;</code> souligné (inséré) (<a href="http://dabblet.com/gist/11dcc9a5c7a4846bc5e2" target="exemple">exemple</a>)
+              </li>
+              <li class="fragment current-yellow">
+                <code>&lt;mark&gt;</code> marqué (<a href="http://dabblet.com/gist/2d4a26b1c8887f0c56f8" target="exemple">exemple</a>)
+              </li>
+              <li class="fragment current-yellow">
+                <code>&lt;small&gt;</code> petit (<a href="http://dabblet.com/gist/89dd36e9ab023ef2316d" target="exemple">exemple</a>)
+              </li>
+              <li class="fragment current-yellow">
+                <code>&lt;sub&gt;, &lt;sup&gt;</code> indice et exposant (<a href="http://dabblet.com/gist/18c9d9b7764d2d76850c" target="exemple">exemple</a>)
+              </li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Balises pour créer des listes</h3>
+            <ul>
+              <li class="fragment current-yellow">
+                <code>&lt;ul&gt;</code> liste non numérotée (<a href="http://dabblet.com/gist/218cf243d7f641066514" target="exemple">exemple</a>)
+              </li>
+              <li class="fragment current-yellow">
+                <code>&lt;ol&gt;</code> liste numérotée (<a href="http://dabblet.com/gist/6ff5feac49280b9dde46" target="exemple">exemple</a>)
+              </li>
+              <li class="fragment current-yellow subtag">
+                <code>&lt;li&gt;</code> élément d'une liste
+              </li>
+              <li class="fragment current-yellow">
+                <hr>
+                <code>&lt;dl&gt;</code> liste de définitions (<a href="http://dabblet.com/gist/e4339f1e49810aa5632c" target="exemple">exemple</a>)
+              </li>
+              <li class="fragment current-yellow subtag">
+                <code>&lt;dt&gt;</code> terme à définir
+              </li>
+              <li class="fragment current-yellow subtag">
+                <code>&lt;dd&gt;</code> la définition du terme
+              </li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Balises pour des textes spéciaux</h3>
+            <ul>
+              <li class="fragment current-yellow subtag">
+                <code>&lt;q&gt;</code> entre guillemets
+              </li>
+              <li class="fragment current-yellow subtag">
+                <code>&lt;blockquote&gt;</code> partie en retrait
+              </li>
+              <li class="fragment current-yellow subtag">
+                <code>&lt;cite&gt;</code> référence de citation (<a href="http://dabblet.com/gist/e50bd8db86a98f9fb362" target="exemple">exemple</a>)
+              </li>
+
+              <li class="fragment current-yellow subtag">
+                <hr>
+                <code>&lt;pre&gt;</code> partie <q>préformaté</q> (<a href="http://dabblet.com/gist/a268c4b75e30dbba0d22" target="exemple">exemple</a>)
+              </li>
+              <li class="fragment current-yellow subtag">
+                <code>&lt;code&gt;</code> code source (<a href="http://dabblet.com/gist/b0f7cae2b782da1cd8fd" target="exemple">exemple</a>)
+              </li>
+              <li class="fragment current-yellow subtag">
+                <code>&lt;kbd&gt;</code> touche de clavier
+              </li>
+              <li class="fragment current-yellow subtag">
+                <code>&lt;var&gt;</code> variable
+              </li>
+            </ul>
+          </section>
+
+           <section>
+            <h3>Balises sémantiques</h3>
+            <ul>
+              <li class="fragment current-yellow subtag">
+                <code>&lt;main&gt;</code> partie principale de la page (<a href="http://dabblet.com/gist/5dfe603bf3231c7672a0" target="exemple">exemple</a>)
+              </li>
+              <li class="fragment current-yellow subtag">
+                <code>&lt;article&gt;</code> article
+              </li>
+              <li class="fragment current-yellow subtag">
+                <code>&lt;section&gt;</code> section
+              </li>
+              <li class="fragment current-yellow subtag">
+                <code>&lt;aside&gt;</code> à côté
+              </li>
+              <li class="fragment current-yellow subtag">
+                <code>&lt;menu&gt;</code> manu (peut contenir des <code>&lt;li&gt;</code>)
+              </li>
+              <li class="fragment current-yellow subtag">
+                <code>&lt;nav&gt;</code> partie contenant plusieurs liens de navigation
+              </li>
+              <li class="fragment current-yellow subtag">
+                <code>&lt;footer&gt;</code> bas de page, de section, d'article, ...
+              </li>
+              <li class="fragment current-yellow subtag">
+                <code>&lt;header&gt;</code>  en tête de page, de section, d'article, ...
+              </li>
+              <li class="fragment current-yellow subtag">
+                <code>&lt;adress&gt;</code> adresse
+              </li>
+              <li class="fragment current-yellow subtag">
+                <code>&lt;time&gt;</code> moment (heure et/ou date)
+              </li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Balises pour la création des tables</h3>
+            <div class="fragment current-yellow subtag">
+              Il ne faut utiliser les tables que pour faire des tables, et non pour la mise en page !
+            </div>
+            <div class="fragment current-yellow subtag">
+              <pre>
+<code>&lt;table&gt;</code> table
+  <code>&lt;thead&gt;</code> l'en-tête
+    <code>&lt;tr&gt;</code> ligne d'en-tête
+      <code>&lt;th&gt;</code> titre de colonne
+  <code>&lt;tfoot&gt;</code> le bas de la table
+    <code>&lt;tr&gt;</code> ligne de bas
+      <code>&lt;td&gt;</code> cellule de bas
+  <code>&lt;tbody&gt;</code> corps de la table
+    <code>&lt;tr&gt;</code> ligne de la table
+      <code>&lt;td&gt;</code> cellule avec des données
+              </pre>
+              (<a href="http://dabblet.com/gist/d54682f7a7715c731bfd" target="exemple">exemple</a>)
+            </div>
+            <div class="fragment current-yellow subtag">
+              Pour créer une table vous pouvez utiliser <a href="http://www.tablesgenerator.com/html_tables" target="_blank">www.tablesgenerator.com</a>. Mais malheureusement ne génère pas <code>&lt;thead&gt;</code>, <code>&lt;tfoot&gt;</code> et <code>&lt;tbody&gt;</code>.
+            </div>
+          </section>
+
+        </section>
+
+        <section>
+          <section>
+            <h3>Les caractères spéciaux</h3>
+            <ul>
+              <li class="fragment current-yellow" ><code>&amp;#946;</code> représente le caractère de code 946 en base 10 (&beta;).</li>
+              <li class="fragment current-yellow" ><code>&amp;#x3B2;</code> représente le caractère de code 3B2 en base 16 (&beta;).</li>
+              <li class="fragment current-yellow" ><code>&amp;beta;</code> représente le caractère <em>beta</em> en HTML (&beta;).</li>
+            </ul>
+          </section>
+          <section>
+            <ul>
+                <li class="fragment current-yellow" ><code>&amp;amp;</code> = &</li>
+                <li class="fragment current-yellow" ><code>&amp;lt;</code> et  <code>&amp;gt;</code> = &lt; et &gt;</li>
+                <li class="fragment current-yellow" ><code>&amp;laquo;</code> et  <code>&amp;raquo;</code> = &laquo; et &raquo;</li>
+                <li class="fragment current-yellow" ><code>&amp;dash;</code>, <code>&amp;ndash;</code> et  <code>&amp;mdash;</code> = &dash;, &ndash; et &mdash;</li>
+                <li class="fragment current-yellow" ><code>&amp;nbsp;</code> = (espace insécable)</li>
+                <li class="fragment current-yellow" ><code>&amp;euro;</code> = &euro;</li>
+                <li class="fragment current-yellow" ><code>&amp;copy;</code> = &copy;</li>
+                <li class="fragment current-yellow" ><code>&amp;reg;</code> = &reg;</li>
+                <li class="fragment current-yellow" >... pour une liste complète voir <a href="http://dev.w3.org/html5/html-author/charref" target="_blank">w3.org</a></li>
+              </ul>
+            </section>
+        </section>
+
+
+      </div><!-- End slides -->
+    </div><!-- End reveal -->
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      Reveal.initialize({
+        history: true,
+        slideNumber: true,
+        transition: 'linear',
+
+        math: {
+          // mathjax: 'http://cdn.mathjax.org/mathjax/latest/MathJax.js',
+          config: 'TeX-AMS_HTML-full'
+        },
+
+        dependencies: [
+          { src: 'lib/js/classList.js' },
+          { src: 'plugin/math/math.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true},
+          // { src: 'plugin/zoom-js/zoom.js', async: true },
+          // { src: 'plugin/notes/notes.js', async: true }
+          // { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          // { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>

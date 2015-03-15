@@ -1,0 +1,40 @@
+.importan {
+  color:yellow;
+  font-weight: bold;
+}
+.fragment.current-fragment.current-yellow {
+  color:yellow;
+}
+li.subtag{
+  margin-left: 1em;
+}
+.reveal code, .reveal pre {
+  margin:0px;
+  padding: 0px;
+  font-size: 1em;
+}
+.reveal code {
+  color:greenyellow;
+}
+.reveal pre.block {
+  margin: -1em 0em -2em 0em;
+}
+li.helloworld {
+  display: inline-block;
+  vertical-align: top;
+  margin: 1em;
+}
+div.half {
+  display: inline-block !important;
+  width: 49%;
+  vertical-align: top;
+  font-size: 70%;
+}
+q {
+  quotes: "«" "»" '"' '"';
+}
+abbr {
+  color:LightBlue;
+  font-weight: bold !important;
+  font-size:110% !important; 
+}
