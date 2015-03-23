@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="fr">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Cours 8 (TeX412)</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="./css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/night.css" id="theme">
+    <link rel="stylesheet" href="main.css" id="theme">
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <div class="slides">
+
+        <section data-background="#4d7e65" data-background-transition="zoom">
+          <h1>TeX412</h1>
+          <h2>(Xe)LaTeX & HTML</h2>
+          <h2>Cours 8</h2>
+          <div class="fragment roll-in">adresse web de cette présentation:
+            <h3>http://git.io/hmsJ</h3>
+          </div>
+          <div class="fragment roll-in">
+            et du cours:
+            <a href="http://ktzanev.github.io/tex412lille1/">ktzanev.github.io/tex412lille1</a>
+          </div>
+        </section>
+
+        <section>
+          <section>
+            <h3>CSS3</h3>
+            <pre class="block fragment">
+              <code>
+h1 {
+  color:red;
+}
+div.message {
+  background-color: #fee;
+  text-align: center;
+  padding: 1em;
+  font-weight: bold;
+}
+              </code>
+            </pre>
+          </section>
+          <section>
+            <h3>Où mettre le code CSS ?</h3>
+            Par ordre de préférence (et inversement à la priorité)
+            <ul>
+              <li class="fragment current-yellow">
+                Dans un fichier externe avec extension <code>css</code> qu'on inclut dans le html avec la balise <code>&lt;link&gt;</code>: <br>
+                <code>&lt;link rel="stylesheet" href="monstyle.css"&gt;</code>
+              </li>
+              <li class="fragment current-yellow">
+                Dans une balise <code>&lt;style&gt;</code> dans le fichier html: <br>
+                <pre class="block"><code>
+&lt;style&gt;
+  p &gt; em {
+    color:green;
+  }
+&lt;/style&gt;
+                </code></pre><br>
+              </li>
+              <li class="fragment current-yellow">
+                Directement dans un élément: <br>
+                <code>&lt;span style=&quot;font-family:monospace;&quot;&gt;...&lt;/span&gt;</code>
+              </li>
+            </ul>
+            <div><a href="http://codepen.io/ktzanev/pen/vEvvpO?editors=110" target="codepen">[exemple]</a></div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h3>Sélecteurs</h3>
+            <div class="fragment current-yellow">
+              Une règle CSS s'écrit de la forme :
+              <pre class="block"><code>
+    sélecteur {
+      propriété1: valeurs1;
+      propriété2: valeurs2;
+      ...
+      propriétéN: valeursN;
+    }
+              </code></pre><br>
+            </div>
+          </section>
+
+          <section>
+            <h3>Sélecteurs de base</h3>
+            <ul>
+              <li class="fragment current-yellow"><code>*</code> : <em>sélecteur universel.</em> Correspond à tout élément.
+                <a href="http://codepen.io/ktzanev/pen/ogJJEv?editors=110" target="codepen">[example]</a></li>
+              <li class="fragment current-yellow"><code>E</code> : <em>sélecteur de balise.</em> Correspond à tout élément E (c.à.d., un élément de type E).
+                <a href="http://codepen.io/ktzanev/pen/PwXXQb?editors=110" target="codepen">[example]</a></li>
+              <li class="fragment current-yellow"><code>E F</code> : <em>sélecteur de descendant.</em> Correspond à tout élément F qui est un descendant de l'élément E. </li>
+              <li class="fragment current-yellow"><code>E > F</code> : <em>sélecteur d'enfant.</em> Correspond à tout élément F qui est un enfant de l'élément E.
+                <a href="http://codepen.io/ktzanev/pen/pvqqaL?editors=110" target="codepen">[example]</a></li>
+              <li class="fragment current-yellow"><code>E + F</code> : <em>sélecteur d'adjacence.</em> Correspond à tout élément F immédiatement précédé par un élément E.
+                <a href="http://codepen.io/ktzanev/pen/gbZZew?editors=110" target="codepen">[example]</a></li>
+              <li class="fragment current-yellow"><code>E[foo]</code> : <em>sélecteur d'attribut.</em> Correspond à tout élément E avec l'attribut "foo" (quelle qu'en soit sa valeur).</li>
+              <li class="fragment current-yellow"><code>E[foo="boo"]</code> : <em>sélecteur valeur d'attribut.</em> Correspond à tout élément E dont l'attribut "foo" a exactement la valeur "boo".
+                <a href="http://codepen.io/ktzanev/pen/yyGGjj?editors=110" target="codepen">[example]</a></li>
+              <li class="fragment current-yellow"><code>.foo</code> : <em>sélecteur de classe.</em> Correspond à tout élément qui est de classe "foo". C'est identique à [class~="boo"].
+                <a href="http://codepen.io/ktzanev/pen/JowwBQ?editors=110" target="codepen">[example]</a></li>
+              <li class="fragment current-yellow"><code>#foo</code> : <em>sélecteur d'ID.</em> Correspond à tout élément dont l'id est "foo".
+                <a href="http://codepen.io/ktzanev/pen/gbZZBg?editors=110" target="codepen">[example]</a></li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Pseudo-classes</h3>
+            <div>
+              commencent par <code>:</code>
+            </div>
+            <ul>
+              <li class="fragment"><code>:not(selector)</code> les éléments ne correspondants pas au "selector"</li>
+              <li class="fragment"><code>:hover</code> quand le curseur survole l'élément</li>
+              <li class="fragment"><code>:visited</code> après que le liens soit visité (ne s'applique qu'aux <code>&lt;a&gt;</code>).</li>
+              <li class="fragment"><code>:first-child</code>, <code>:last-child</code> premier ou dernier enfants</li>
+              <li class="fragment"><code>:nth-child(n)</code> n-ème enfant (n=1,2,..., even, odd).</li>
+              <li class="fragment"><code>:empty</code> les balises vides</li>
+            </ul>
+            <div class="fragment">
+              <a href="http://codepen.io/ktzanev/pen/wBRVvM?editors=110" target="codepen">[example]</a>
+            </div>
+          </section>
+
+          <section>
+            <h3>Pseudo-éléments</h3>
+            <div>
+              commencent par <code>::</code>
+            </div>
+            <ul>
+              <li class="fragment"><code>::first-line</code> la première ligne</li>
+              <li class="fragment"><code>::first-letter</code> la première lettre</li>
+              <li class="fragment"><code>::bafore</code>, <code>::after</code> permet de rajouter du texte au début et à la fin de l'élément.</li>
+              <li class="fragment"><code>::selection</code> la partie sélectionnée par l'utilisateur</li>
+            </ul>
+            <div class="fragment">
+              <a href="http://codepen.io/ktzanev/pen/xbmvZy?editors=110" target="codepen">[example]</a>
+            </div>
+          </section>
+
+          <section>
+            <h3>Combinaison de sélecteurs</h3>
+            <div class="fragment current-yellow">
+              On peut combiner plusieurs sélecteurs, comme par exemple <br>
+              <code>div.main > p:first-child:not(:empty)</code>
+            </div>
+            <div class="fragment current-yellow">
+              On peut appliquer un style à plusieurs sélecteurs en les séparant de virgules
+              <pre>
+                <code>
+div#one, span.test, img:hover {
+  cursor: pointer;
+}
+                </code>
+              </pre>
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h3>Propriétés</h3>
+            Nous avons déjà vu plusieurs exemples de propriétés.
+            <div class="fragment current-yellow">
+              Il y a deux types:
+              <ul>
+                <li class="fragment current-yellow">simple : <code>color:red;</code></li>
+                <li class="fragment current-yellow">multiple: <code>border: 1px solid red;</code>, qui est raccourcie de trois propriétés <code>border-width</code>, <code>border-style</code> et <code>border-color</code>.<br>
+                  <span class="fragment current-yellow">Attention : ces trois propriétés sont aussi des raccourcis ! Par exemple <code>border-width</code> peut être décomposé en <code>border-top-width</code>, <code>border-right-width</code>, <code>border-bottom-width</code> et <code>border-left-width</code>.</span>
+                </li>
+              </ul>
+            </div>
+            <div class="fragment current-yellow">
+              Vous pouvez voir les propriétés disponibles ici
+              <a href="http://openclassrooms.com/courses/apprenez-a-creer-votre-site-web-avec-html5-et-css3/memento-des-proprietes-css" target="help">Mémento CSS</a>
+              ou ici
+              <a href="http://www.w3schools.com/css/default.asp" target="help">CSS sur w3schools</a>.
+            </div>
+          </section>
+
+          <section>
+            <h3>Priorités</h3>
+            L'ordre des priorité (de plus important vers le moins important) :
+            <ul>
+              <li class="fragment current-yellow">Les propriétés avec <code>!important</code></li>
+              <li class="fragment current-yellow">Les propriétés dans l'attribut <code>style</code> de l'élément</li>
+              <li class="fragment current-yellow">Les sélecteurs avec le plus d'id</li>
+              <li class="fragment current-yellow">Les sélecteurs avec le plus d'attributs et classes</li>
+              <li class="fragment current-yellow">Les sélecteurs avec le plus d'éléments</li>
+              <li class="fragment current-yellow">Les sélecteurs qui sont dans la balise <code>&lt;style&gt;</code></li>
+              <li class="fragment current-yellow">La dernière propriété dans l'ordre</li>
+            </ul>
+            <div class="fragment">
+              <a href="http://codepen.io/ktzanev/pen/vEvvpO?editors=110" target="codepen">[exemple]</a>
+            </div>
+          </section>
+
+          <section>
+            <h3>Hérédité</h3>
+            Il y a des priorité qui sont héritées par défaut et d'autre qui ne le sont pas.
+            <div class="fragment current-yellow">Par exemple <code>color</code> et <code>font-size</code> sont héritées.</div>
+            <div class="fragment current-yellow">Mais <code>border</code>, <code>margin</code> et <code>padding</code> ne le sont pas.</div>
+            <div class="fragment current-yellow">On peut changer ce comportement avec les valeurs <code>inherit</code> (pour forcer l'héritage) ou <code>initial</code> (pour arrêter l'héritage et forcer la valeur initiale).
+              <a href="http://codepen.io/ktzanev/pen/gbZqLX?editors=110" target="codepen">[exemple]</a>
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h3>Box model</h3>
+            <div class="container">
+              <img src="images/w3cboxmodel.png" class="fragment">
+              <img src="images/traditionalboxmodel.png" class="fragment">
+            </div>
+          </section>
+
+          <section>
+            <h3>Type de boites</h3>
+            <ul>
+              <li class="fragment"><code>display:block</code> : comme un <code>div</code></li>
+              <li class="fragment"><code>display:inline</code> :  comme un <code>span</code></li>
+              <li class="fragment"><code>display:inline-block</code> :  comme un <code>img</code></li>
+              <li class="fragment"><code>display:none</code> : n'est pas afficher</li>
+              <li class="fragment">Il y a d'autres, mais plus complexes, comme par exemple le récent <code>display:flex</code> ...</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Unités</h3>
+            <ul>
+              <li class="fragment"><code>px</code> : en pixel (pas vraiment pour les téléphones ~ 96 ppi)</li>
+              <li class="fragment"><code>cm</code>, <code>mm</code>, <code>in</code>, <code>pt</code>, <code>pc</code> : fonctionne aussi, mais ...</li>
+              <li class="fragment"><code>em</code> : égale à la taille de la police (par défaut 16px). Il y a aussi <code>rem</code> qui est relatif à la police du <code>&lt;html&gt;</code>.</li>
+              <li class="fragment"><code>vw</code>, <code>vh</code> : 1/100 de la largeur et de la hauteur de l'écran. Il y a aussi <code>vmin</code> et <code>vmax</code>.</li>
+              <li class="fragment"><code>%</code> : relativement à la valeur du parent.</li>
+              <li class="fragment"><code>calc</code> : on peut utiliser cette fonction pour faire des calculs, par exemple <code>width: calc(50% - 1em);</code>.</li>
+            </ul>
+            <div class="fragment"><br>
+              Pour plus d'information voir <a href="http://www.w3.org/Style/Examples/007/units.fr.html">W3C : unités</a>.
+            </div>
+          </section>
+
+          <section>
+            <h3>Positionnement</h3>
+            <ul>
+              <li class="fragment"><code>position:static</code> : est le positionnement par défaut.</li>
+              <li class="fragment"><code>position:relative</code> : relativement à la position par défaut (sa place reste réservée). A utiliser avec <code>top</code>, <code>right</code>, <code>bottom</code> ou <code>left</code>.</li>
+              <li class="fragment"><code>position:absolute</code> : placé de façon absolu par rapport au premier parent qui n'est pas "static" (il ne prend pas de place).</li>
+              <li class="fragment"><code>position:fixed</code> : fixé par rapport à l'écran.</li>
+              <li class="fragment"><code>position:float</code> : à voir par exemple <a href="http://openweb.eu.org/articles/initiation_float/">ici</a>.</li>
+            </ul>
+            <div class="fragment">
+              <a href="http://codepen.io/ktzanev/pen/XJovMB?editors=110" target="codepen">[exemple]</a>
+            </div>
+          </section>
+        </section>
+
+
+
+
+      </div><!-- End slides -->
+    </div><!-- End reveal -->
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      Reveal.initialize({
+        history: true,
+        slideNumber: true,
+        transition: 'linear',
+
+        math: {
+          // mathjax: 'http://cdn.mathjax.org/mathjax/latest/MathJax.js',
+          config: 'TeX-AMS_HTML-full'
+        },
+
+        dependencies: [
+          { src: 'lib/js/classList.js' },
+          { src: 'plugin/math/math.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true},
+          // { src: 'plugin/zoom-js/zoom.js', async: true },
+          // { src: 'plugin/notes/notes.js', async: true }
+          // { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          // { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>
