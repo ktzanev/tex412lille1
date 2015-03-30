@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="fr">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Cours 9 (TeX412)</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="./css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/night.css" id="theme">
+    <link rel="stylesheet" href="main.css" id="theme">
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <div class="slides">
+
+        <section data-background="#4d7e65" data-background-transition="zoom">
+          <h1>TeX412</h1>
+          <h2>(Xe)LaTeX & HTML</h2>
+          <h2>Cours 9</h2>
+          <div class="fragment roll-in">adresse web de cette présentation:
+            <h3>http://git.io/j0mu</h3>
+          </div>
+          <div class="fragment roll-in">
+            et du cours:
+            <a href="http://ktzanev.github.io/tex412lille1/">ktzanev.github.io/tex412lille1</a>
+          </div>
+        </section>
+
+        <section>
+          <section>
+            <h3>C'est quoi un CDN ?</h3>
+            <div class="fragment current-yellow">
+              <blockquote>
+                Un <em>content delivery network (CDN)</em> est constitué d'ordinateurs reliés en réseau à travers Internet et qui coopèrent afin de mettre à disposition du contenu ou des données à des utilisateurs.
+                <cite>(Wikipedia)</cite>
+              </blockquote>
+            </div>
+            <div class="fragment current-yellow">
+              Dans la pratique si on cherche une adresse url d'une bibliothèque JS ou d'un framework CSS on cherche dans un moteur de recherche "CDN ...", par exemple <a href="https://www.google.fr/search?q=CDN+MathJax" target="_blank">CDN MathJax</a> ou <a href="https://www.google.fr/search?q=CDN+Bootstrap" target="_blank">CDN Bootstrap</a>.
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h3>C'est quoi MathJax ?</h3>
+            <div class="fragment current-yellow">
+              <blockquote>
+                MathJax est une bibliothèque logicielle JavaScript qui affiche les formules mathématiques dans des navigateurs web, en utilisant les balises de LaTeX ou de MathML. <cite>(Wikipedia)</cite>
+              </blockquote>
+            </div>
+            <div class="fragment current-yellow">
+              MathJax est open-source sous licence Apache.
+            </div>
+            <div class="fragment current-yellow">
+              L'adresse du site web est <a href="http://www.mathjax.org/">www.mathjax.org/</a>.
+            </div>
+          </section>
+
+          <section>
+            <h3>Comment utiliser MathJax ?</h3>
+            <ul>
+              <li class="fragment current-yellow">En bas du <code>&lt;body&gt;</code> on met le code suivant
+<pre class="block smaller">
+  <code>
+&lt;script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"&gt;
+&lt;/script&gt;
+
+  </code>
+</pre>
+              </li>
+              <li class="fragment current-yellow">Par défaut les formules doivent être entourées par <code>\( ... \)</code>, <code>\[ ... \]</code> ou <code>$$ ... $$</code>. Si on souhaite utiliser des simples dollars en plus, il faut rajouter le code suivant:
+<pre class="block smaller">
+  <code>
+&lt;script type="text/x-mathjax-config"&gt;
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+&lt;/script&gt;
+
+  </code>
+</pre>
+              </li>
+              <li class="fragment current-yellow">
+                Puis on peut utiliser des formules LaTeX comme
+                <div class="tex2jax_ignore center">
+                    <code>$ \sinh(x) = \sum \frac{x^{2k+1}}{(2k+1)!} $</code>
+                </div>
+                pour obtenir :
+                <div class="center">
+                    $\sinh(x) = \sum \frac{x^{2k+1}}{(2k+1)!}$
+                </div>
+              </li>
+            </ul>
+          </section>
+          <section>
+            <h3>Comment fonctionne MathJax ?</h3>
+            <div class="fragment current-yellow">
+              Par défaut le script MathJax parcourt toute la page à la recherche des textes délimités par <code>\(...\)</code>, <code>$$...$$</code> ... puis remplace ces textes par des commandes plus complexes pour afficher les formules. Il rajouts aussi un certain nombre de styles et de codes javascript dans la page.
+            </div>
+            <div class="fragment current-yellow">
+              Toute cette complexité à un prix : de la mémoire et du temps.
+            </div>
+            <div class="fragment current-yellow">
+              Si la page web est très longue, pour améliorer un peut les choses, il est souhaitable d'utiliser les classes <code>tex2jax_ignore</code> (dans la balise body) et <code>tex2jax_process</code> (dans les balises contenant des maths).
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h3>C'est quoi Bootstrap ?</h3>
+            <div class="fragment current-yellow">
+              <blockquote>
+                <em>Bootstrap</em> est une collection d'outils (<em>Framework d'interface</em>) utile à la création de sites et d'applications web.
+              </blockquote>
+            </div>
+            <div class="fragment current-yellow">
+              Bootstrap est édité par Twitter
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="10 10 280 280" width="100" height="100" style="vertical-align: middle;">
+                <path d="m 250,87.974 c -7.358,3.264 -15.267,5.469 -23.566,6.461 8.471,-5.078 14.978,-13.119 18.041,-22.701 -7.929,4.703 -16.71,8.117 -26.057,9.957 -7.484,-7.975 -18.148,-12.957 -29.95,-12.957 -22.66,0 -41.033,18.371 -41.033,41.031 0,3.216 0.363,6.348 1.062,9.351 -34.102,-1.711 -64.336,-18.047 -84.574,-42.872 -3.532,6.06 -5.556,13.108 -5.556,20.628 0,14.236 7.244,26.795 18.254,34.153 -6.726,-0.213 -13.053,-2.059 -18.585,-5.132 -0.004,0.171 -0.004,0.343 -0.004,0.516 0,19.88 14.144,36.464 32.915,40.234 -3.443,0.938 -7.068,1.439 -10.81,1.439 -2.644,0 -5.214,-0.258 -7.72,-0.736 5.222,16.301 20.375,28.165 38.331,28.495 -14.043,11.006 -31.735,17.565 -50.96,17.565 -3.312,0 -6.578,-0.194 -9.788,-0.574 18.159,11.643 39.727,18.437 62.899,18.437 75.473,0 116.746,-62.524 116.746,-116.747 0,-1.779 -0.04,-3.548 -0.119,-5.309 8.017,-5.784 14.973,-13.011 20.474,-21.239 z" style="fill:#3aaae1"/>
+              </svg><br>
+              et distribué sous licence libre MIT.
+            </div>
+            <div class="fragment current-yellow">
+              L'adresse est <a href="http://getbootstrap.com/" target="_blank">getbootstrap.com</a>
+            </div>
+          </section>
+
+          <section>
+            <h3>Comment utiliser Bootstrap ?</h3>
+            <div class="fragment current-yellow">
+              Pour un usage simple, il suffit d'inclure de fichier css à partir d'un cdn:
+<pre class="block smaller">
+  <code>
+&lt;link rel=&quot;stylesheet&quot;
+  href=&quot;https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css&quot;&gt;
+
+  </code>
+</pre>
+            </div>
+            <div class="fragment current-yellow">
+              Pour un usage plus poussez, il va falloir inclure aussi des javascript (en bas de la balise <code>&lt;body&gt;</code>) :
+<pre class="block smaller">
+  <code>
+&lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js&quot;&gt;&lt;/script&gt;
+
+  </code>
+</pre>
+            </div>
+          </section>
+
+          <section>
+            <h3>La typographie</h3>
+            <div class="fragment current-yellow">
+              Bootstrap change le CSS par défaut et introduit beaucoup de classes css très utiles.
+            </div>
+            <div class="fragment current-yellow">
+              Par exemple <code>text-center</code>, <code>text-uppercase</code><br>
+              ou <code>list-inline</code> (à utiliser dans un <code>&lt;ul&gt;</code>).
+            </div>
+            <div class="fragment current-yellow">
+              <a href="http://codepen.io/ktzanev/pen/qEvyyX?editors=100" target="codepen">[exemple]</a>
+            </div>
+            <div class="fragment current-yellow">
+              Pour plus d'information voir <a href="http://getbootstrap.com/css/#type" target="_blank">Typography (en anglais)</a>.
+            </div>
+          </section>
+
+          <section>
+            <h3>La grille de Bootstrap</h3>
+            <div class="fragment current-yellow">
+              Il s'agit d'une grille de 12 colonnes dans laquelle on positionne des éléments en choisissant leur largeur ... et tous ça en mettant des classes.
+            </div>
+            <div class="fragment current-yellow">
+              Par exemple:
+<pre class="block">
+  <code>
+&lt;div class=&quot;row&quot;&gt;
+  &lt;div class=&quot;col-md-4&quot;&gt; Largeur 4 colonnes &lt;/div&gt;
+  &lt;div class=&quot;col-md-8&quot;&gt; Largeur 8 colonnes &lt;/div&gt;
+&lt;/div&gt;
+
+  </code>
+</pre>
+              ces deux div vont être côte-à-côte sur un ordinateurs (largeur >= 992px), mais vont être l'un sous l'autre pour un écran de tablette ou téléphone.
+            </div>
+            <div class="fragment current-yellow">
+            <a href="http://codepen.io/ktzanev/pen/ZYPjOz?editors=110" target="codepen">[exemple]</a>
+            </div>
+            <div class="fragment current-yellow">
+              Pour plus d'information on peut consulter <a href="http://creersonsiteweb.net/page-bootstrap-grille" target="_blank">cette page en français</a> ou <a href="http://openclassrooms.com/courses/prenez-en-main-bootstrap/une-grille" target="_blank">celle-ci</a>, ou <a href="http://getbootstrap.com/css/#grid-options" target="_blank">la documentation officielle en anglais</a>.
+            </div>
+          </section>
+
+          <section>
+            <h3>Classes de visibilité</h3>
+            <ul>
+              <li class="fragment current-yellow"><code>visible-xs-block</code> : pour afficher un élément seulement sur des écrans xs (&lt;768px). Ou on peut remplacer <code>xs</code> par <code>sm</code>, <code>md</code> et <code>lg</code>. Et à la place de <code>block</code> on peut mettre <code>inline</code> ou <code>block-inline</code></li>
+              <li class="fragment current-yellow"><code>hidden-xs</code> : pour cacher un élément seulement sur des écrans xs. De même on peut mettre <code>sm</code>, <code>md</code> et <code>lg</code>.</li>
+              <li class="fragment current-yellow"><code>hidden-print</code> pour cacher l'élément lors de l'impression</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Les icônes</h3>
+            <div class="fragment current-yellow">
+              Pour utiliser une <a href="http://getbootstrap.com/components/#glyphicons" target="_blank">icône</a> il suffit de rajouter dans un <code>&lt;span&gt;</code> vide la classe <code>glyphicon</code> et la classe avec le nom de l'icône, par exemple <code>glyphicon-camera</code>.
+            </div>
+            <div class="fragment current-yellow">
+              <a href="http://codepen.io/ktzanev/pen/YPgjpr?editors=110" target="codepen">[exemple]</a>
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <h3>Thèmes HTML5 (Bootstrap)</h3>
+          <ul>
+            <li><a href="http://startbootstrap.com/" target="_blank">startbootstrap.com</a></li>
+            <li><a href="http://bootstrapzero.com/" target="_blank">bootstrapzero.com</a></li>
+            <li><a href="http://www.scoopthemes.com/" target="_blank">scoopthemes.com</a></li>
+            <li><a href="http://templated.co/" target="_blank">templated.co</a></li>
+            <li><a href="http://html5up.net/" target="_blank">html5up.net</a></li>
+          </ul>
+        </section>
+      </div><!-- End slides -->
+    </div><!-- End reveal -->
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      Reveal.initialize({
+        history: true,
+        slideNumber: true,
+        transition: 'linear',
+
+        math: {
+          // mathjax: 'http://cdn.mathjax.org/mathjax/latest/MathJax.js',
+          config: 'TeX-AMS_HTML-full'
+        },
+
+        dependencies: [
+          { src: 'lib/js/classList.js' },
+          { src: 'plugin/math/math.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true},
+          // { src: 'plugin/zoom-js/zoom.js', async: true },
+          // { src: 'plugin/notes/notes.js', async: true }
+          // { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          // { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>

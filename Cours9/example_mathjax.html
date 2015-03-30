@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>MathJax TeX Test Page</title>
+  </head>
+  <!-- une boonne idée : utiliser .tex2jax_ignore et .tex2jax_process -->
+  <body style="font-size:3vw;">
+    Quand $a \ne 0$, l'équation \(ax^2 + bx + c = 0\) a deux solutions (complexes):
+      $$
+          x = \frac{-b \pm \sqrt{b^2-4ac}}{2a}.
+      $$
+
+    <!-- La configuration de MathJax -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+    </script>
+    <!-- Le script MathJax à partir d'un cdn -->
+    <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+  </body>
+</html>
