@@ -131,7 +131,12 @@
                 </code>
               </pre>
             <div>
-              Les virgules sont optionnelles.
+              <p>
+                Les virgules sont optionnelles.
+              </p>
+              <p>
+                Il existe aussi <code>polyline</code> qui ne ferme pas automatiquement la courbe.
+              </p>
             </div>
             </div>
             <div class="half fragment">
@@ -400,7 +405,7 @@
 &lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -150 300 400" width="300" height="400" &gt;
 
   &lt;g fill="none" stroke-width="3"&gt;
-    &lt;polyline points="30,30 200,100 100,200 30,30" stroke="red"/&gt;
+    &lt;polygon points="30,30 200,100 100,200" stroke="red"/&gt;
     &lt;circle cx="100" cy ="100" r="100" stroke="blue"/&gt;
   &lt;/g&gt;
 
@@ -422,7 +427,7 @@
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -150 300 400" width="300" height="400" >
 
                 <g fill="none" stroke-width="3">
-                  <polyline points="30,30 200,100 100,200 30,30" stroke="red"/>
+                  <polygon points="30,30 200,100 100,200" stroke="red"/>
                   <circle cx="100" cy ="100" r="100" stroke="blue"/>
                 </g>
 
